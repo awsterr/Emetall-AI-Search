@@ -108,9 +108,11 @@ const tableHeaders = [
    'Стандарт',
    'Длина',
    'Наличие',
+   '', // Для примечания
    'Цена, руб с НДС',
    'Металлобаза',
-   'Город'
+   'Город',
+   '' // Для кнопок 
 ]
 const tableData = [
    {
@@ -229,17 +231,48 @@ const tableData = [
 const tableHeader = document.getElementById('result-table__header')
 const tableBody = document.getElementById('result-table__body')
 
+const table = document.getElementById('table')
 
+const tableHeaderRow = document.createElement('tr')
+tableHeaderRow.classList.add('table-headers')
+tableHeaders.map((item)=>{
+   const td = document.createElement('td')
+   td.innerHTML = item
+   tableHeaderRow.appendChild(td)
+})
+table.appendChild(tableHeaderRow)
 
-tableData.map((tableElement)=>{
-   const div = document.createElement('div');
-   div.classList.add('table-row')
-   for (let key in tableElement){
-      const innerDiv = document.createElement('div')
-      innerDiv.innerHTML = tableElement[key]
-      div.appendChild(innerDiv)
-      console.log(tableElement[key]);
-      
+tableData.map((item)=>{
+   const tr = document.createElement('tr')
+   for(let key in item){
+      if(key==='Цена, руб с НДС'){
+         const info = document.createElement('td')
+         info.classList.add('info')
+         const img = document.createElement('img')
+         img.setAttribute('src', '/img/info-gray.svg')
+         img.setAttribute('style','margin-top:5px;')
+         info.appendChild(img)
+         tr.appendChild(info)
+      }
+      const td = document.createElement('td')
+      td.innerHTML = item[key]
+      tr.appendChild(td)
    }
-   tableBody.appendChild(div);
+   const td = document.createElement('td')
+   
+   const button = document.createElement('a')
+   button.innerText = 'В корзину'
+   button.classList.add('btn-cart')
+   td.appendChild(button)
+
+   const more = document.createElement('div')
+   more.classList.add('more-container')
+
+   const img = document.createElement('img')
+   img.setAttribute('src', '/img/more.svg')
+   more.appendChild(img)
+
+   td.appendChild(more)
+   tr.appendChild(td)
+   table.appendChild(tr)
 })

@@ -1525,6 +1525,7 @@ main .search-results__list .result-item {
   display: block;
 }
 main .search-results__list .result-item__header {
+  margin-bottom: 20px;
   display: flex;
 }
 main .search-results__list .result-item__number {
@@ -1597,13 +1598,49 @@ main .search-results__list .result-item__close {
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
 }
-main .search-results__list .result-item__body .result-table__body {
-  display: grid;
-  gap: 20px;
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  color: #212529;
 }
-main .search-results__list .result-item__body .result-table__body .table-row {
-  display: flex;
-  gap: 20px;
+table tr {
+  height: 43px;
+}
+table tr:nth-child(even) {
+  background: #F8F8F8;
+}
+table .table-headers td {
+  border-top: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+table td {
+  border-top: 1px solid #DFE2E6;
+  border-bottom: 1px solid #DFE2E6;
+  padding: 0 14px;
+  font-size: 14px;
+}
+table td.info {
+  padding: 0;
+}
+table td .btn-cart {
+  display: inline-block;
+  height: 24px;
+  color: #FFFFFF;
+  background: #2764e0;
+  padding: 2px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-right: 26px;
+}
+table td:last-child {
+  text-align: right;
+}
+table td .more-container {
+  display: inline-flex;
+  position: relative;
+  bottom: 3px;
 }
 
 .hide {
