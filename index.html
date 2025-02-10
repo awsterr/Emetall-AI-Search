@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/styles.css">
+   <!-- <link rel="stylesheet" href="css/autosearch.css"> -->
+   <title>Document</title>
+</head>
+<body>
+   <div class="backdrop hidden" id="backdrop"></div>
+   <div class="header-promo">
+      <p class="header-promo__text">Первые 10 поисков беплатно!</p>
+      <div class="subscribe-btn">
+         <span class="subscribe-btn__text">
+            Купить подписку 1 400 ₽/месяц
+         </span>
+         <span class="subscribe-btn__sale">–30%</span>
+      </div>
+   </div>
+   <main>
+      <section class="autosearch">
+         <div class="autosearch__container">
+            <div class="autosearch__header">
+               <h1 class="autosearch__title fs_28 fw_600">Автоматический поиск по вашей заявке</h1>
+               <p class="autosearch__subtitle fs_14 gray2">Обработаем сборную заявку и покажем премиум предложения из закрытой базы Е-Металл.</p>
+            </div>
+            <div class="autosearch__body">
+               <form class="autosearch-form" id="autosearch-form">
+                  <textarea 
+                     class="autosearch-form__textarea"
+                     placeholder="Введите состав заказа"
+                     maxlength="20000"
+                     id="autosearch-textarea"
+                  ></textarea>
+                  <p id="pseudo-placeholder">Или перетащите файл c заявкой в формате Word, Excel, Txt, чтобы мы могли его обработать.</p>
+                  <input 
+                     class="autosearch-form__file-input" 
+                     type="file" 
+                     id="docpicker" 
+                     accept=".xlsx,.xls,.txt,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" 
+                  />
+                  <label for="docpicker" class="autosearch-form__custom-input">
+                     <img src="/img/file-input.svg">
+                     Загрузить файл с заявкой
+                  </label>
+                  <div class="autosearch-form__symbol-counter gray2 fs_12"><span id="symbol-counter">0</span>/20000</div>
+                  <button class="autosearch-form__btn btn btn_44">Найти</button>
+                  <div class="autosearch-dragover hidden" id="autosearch-dragover">
+                     <img src="/img/Upload.svg">
+                     Перетащите файл c заявкой в формате Word, Excel, Txt, <br> чтобы мы могли его обработать.
+                     <div id="close-btn" class="autosearch-dragover__close">Отмена</div>
+                  </div>
+               </form>
+               <div class="search-request">
+                  <h3 class="search-request__title fw_600 fs_24">Хотите все  сделаем сами?</h3>
+                  <p class="search-request__text lh_156">Вышлем коммерческое предложение по вашей заявке с лучшей ценой на рынке.</p>
+                  <a href="#" class="search-request__btn">Оставить заявку</a>
+               </div>
+               <div class="progress__container hidden blue" id="progress-container">
+                  <span id="progress-status">Начинаем загрузку...</span>
+                  <div class="progress-bg"><div class="progress-line" id="progress"></div></div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="search-results">
+         <div class="search-results__header">
+            <h2 class="search-results__title fs_28 fw_600">Распознано 4 позиции</h2>
+            <p class="search-results__subtitle">Сначала из <button type="button" class="blue city-modal">Москвы</button></p>
+            <label class="toggle" for="city-checkbox">
+               <input class="search-results__checkbox" type="checkbox" id="city-checkbox">
+               <span class="toggle-track">
+                  <span class="toggle-indicator"></span>
+               </span>
+            </label>
+         </div>
+         <ul class="search-results__list">
+            <li class="search-results__item result-item">
+               <div class="result-item__header">
+                  <div class="result-item__number">1</div>
+                  <div class="position-filter">
+                     <div class="position-filter__item">
+                        <div class="position-filter__title fw_600">Наименование</div>
+                        <div class="position-filter__body">
+                           <input type="text" value="Труба профильная">
+                        </div>
+                     </div>
+                     <div class="position-filter__item">
+                        <div class="position-filter__title fw_600">Размер</div>
+                        <div class="position-filter__body">
+                           <input type="text" value="50х50">
+                        </div>
+                     </div>
+                     <div class="position-filter__item">
+                        <div class="position-filter__title fw_600">Стенка</div>
+                        <div class="position-filter__body">
+                           <input type="text" value="3">
+                        </div>
+                     </div>
+                     <div class="position-filter__item">
+                        <div class="position-filter__title fw_600">Сталь</div>
+                        <div class="position-filter__body">
+                           <input type="text" value="ст.0-20">
+                        </div>
+                     </div>
+                     <div class="position-filter__item">
+                        <div class="position-filter__title fw_600">ГОСТ</div>
+                        <div class="position-filter__body">
+                           <input type="text" value="13663-86">
+                        </div>
+                     </div>
+                     <div class="position-filter__item">
+                        <div class="position-filter__title fw_600">Количество</div>
+                        <div class="position-filter__body double-input">
+                           <input type="text" value="30">
+                           <input type="text" value="т">
+                        </div>
+                     </div>
+                     <div class="position-filter__item">
+                        <a class="position-filter__refresh-btn" href="#">Обновить результат</a>
+                     </div>
+                  </div>
+                  <button class="result-item__close">
+                     <img src="/img/search-close.svg">
+                  </button>
+               </div>
+               <div class="result-item__body">
+                  <div class="result-table">
+                     <div class="result-table__header" id="result-table__header"></div>
+                     <div class="result-table__body" id="result-table__body"></div>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </section>
+   </main>
+   <script src="/js/script.js"></script>
+</body>
+</html>
