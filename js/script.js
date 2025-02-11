@@ -265,7 +265,7 @@ function findResults(){
                const info = document.createElement('td')
                info.classList.add('info')
                const img = document.createElement('img')
-               img.setAttribute('src', '/img/info-gray.svg')
+               img.setAttribute('src', 'img/info-gray.svg')
                img.style.marginTop = "5px";
                img.setAttribute('title','Указана розничная цена. Возможно согласование скидки')
                info.appendChild(img)
@@ -287,7 +287,7 @@ function findResults(){
          more.classList.add('more-container')
       
          const img = document.createElement('img')
-         img.setAttribute('src', '/img/more.svg')
+         img.setAttribute('src', 'img/more.svg')
          more.appendChild(img)
       
          td.appendChild(more)
@@ -376,7 +376,7 @@ function findResults(){
                         </div>
                      </div>
                      <button class="result-item__close" id="close_${position.id}">
-                        <img src="/img/search-close.svg">
+                        <img src="img/search-close.svg">
                      </button>
                   </div>
                   <div class="result-item__body">
