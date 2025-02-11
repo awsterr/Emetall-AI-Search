@@ -9,7 +9,7 @@
 </head>
 <body>
    <div class="backdrop hidden" id="backdrop"></div>
-   <div class="header-promo">
+   <!-- <div class="header-promo">
       <p class="header-promo__text">Первые 10 поисков беплатно!</p>
       <div class="subscribe-btn">
          <span class="subscribe-btn__text">
@@ -17,7 +17,7 @@
          </span>
          <span class="subscribe-btn__sale">–30%</span>
       </div>
-   </div>
+   </div> -->
    <main>
       <section class="autosearch">
          <div class="autosearch__container">
@@ -51,11 +51,21 @@
                      Перетащите файл c заявкой в формате Word, Excel, Txt, <br> чтобы мы могли его обработать.
                      <div id="close-btn" class="autosearch-dragover__close">Отмена</div>
                   </div>
+                  <img src="/img/logo-pro.png" inert class="autosearch-form__logo">
                </form>
-               <div class="search-request">
-                  <h3 class="search-request__title fw_600 fs_24">Хотите все  сделаем сами?</h3>
-                  <p class="search-request__text lh_156">Вышлем коммерческое предложение по вашей заявке с лучшей ценой на рынке.</p>
-                  <a href="#" class="search-request__btn">Оставить заявку</a>
+               <div class="additional-info">
+                  <div class="btns-wrapper">
+                     <a href="#" class="btn btn_38">Попробовать 30 дней бесплатно</a>
+                     <a href="#" class="secondary-btn btn_38">Подробнее</a>
+                  </div>
+                  <div class="search-request">
+                     <h3 class="search-request__title fw_600 fs_21">Вы можете получить предложения на электронную почту</h3>
+                     <p class="search-request__text lh_156">Отправьте заявку на почту <br>и получите результат поиска<br> ответным письмом</p>
+                     <div class="search-request__link-wrapper">
+                        <a href="mailto:order+507@e-metall.ru" class="search-request__link fw_600 fs_24">order+507@e-metall.ru</a>
+                        <img src="/img/copy.svg">
+                     </div>
+                  </div>
                </div>
                <div class="progress__container hidden blue" id="progress-container">
                   <span id="progress-status">Начинаем загрузку...</span>
@@ -75,8 +85,8 @@
                </span>
             </label>
          </div>
-         <ul class="search-results__list">
-            <li class="search-results__item result-item">
+         <ul class="search-results__list" id="search-results__list">
+            <!-- <li class="search-results__item result-item">
                <div class="result-item__header">
                   <div class="result-item__number">1</div>
                   <div class="position-filter">
@@ -113,12 +123,12 @@
                      <div class="position-filter__item">
                         <div class="position-filter__title fw_600">Количество</div>
                         <div class="position-filter__body double-input">
-                           <input type="text" value="30">
-                           <input type="text" value="т">
+                           <input type="text" value="30" class="amount-input-field">
+                           <input type="text" value="т" class="amount-input-field">
                         </div>
                      </div>
                      <div class="position-filter__item">
-                        <a class="position-filter__refresh-btn" href="#">Обновить результат</a>
+                        <a class="secondary-btn position-filter__refresh-btn btn_38" href="#">Обновить результат</a>
                      </div>
                   </div>
                   <button class="result-item__close">
@@ -126,10 +136,10 @@
                   </button>
                </div>
                <div class="result-item__body">
-                  <table class="result-table" id="table">
+                  <table class="result-table" id="table_1">
                   </table>
                </div>
-            </li>
+            </li> -->
          </ul>
       </section>
    </main>
