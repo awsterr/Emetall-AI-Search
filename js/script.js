@@ -113,6 +113,11 @@ docpicker.addEventListener('change',(event)=>{
 
 function findResults(){
    // Запрос на сервер, получаем константы
+   
+   const searchConteiner = document.querySelector('.search-results')
+   searchConteiner.style.display = 'none'
+   
+
    const results = [
       {
          id:1,
@@ -325,9 +330,12 @@ function findResults(){
    
    const resutlsCounter = document.querySelector('.search-results__title')
    resutlsCounter.innerHTML = `Распознано ${results.length} позиции`
-   const searchConteiner = document.querySelector('.search-results')
+
+   // const searchConteiner = document.querySelector('.search-results')
    searchConteiner.style.display = 'block'
+   
    const resultList = document.getElementById('search-results__list')
+   resultList.innerHTML = ''
    results.map((position,index)=>{
       const li = document.createElement('li')
       li.classList.add("search-results__item","result-item")
