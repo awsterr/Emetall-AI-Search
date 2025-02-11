@@ -1457,8 +1457,8 @@ main .autosearch__body .progress__container .progress-bg .progress-line {
   transition: width 0.4s ease;
 }
 main .search-results {
-  display: none;
   padding: 52px 112px;
+  display: none;
 }
 main .search-results__header {
   display: flex;
