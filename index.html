@@ -8,7 +8,7 @@
    <title>Document</title>
 </head>
 <body>
-   <div class="backdrop hidden" id="backdrop"></div>
+   <div class="backdrop hidden" id="dragiver-backdrop"></div>
    <!-- <div class="header-promo">
       <p class="header-promo__text">Первые 10 поисков беплатно!</p>
       <div class="subscribe-btn">
@@ -18,31 +18,7 @@
          <span class="subscribe-btn__sale">–30%</span>
       </div>
    </div> -->
-   <!-- <div class="cart-modal">
-      <h3 class="cart-modal__title">Товар добавлен в корзину</h3>
-      <div class="cart-modal__body">
-         <div class="cart-modal__info">
-            <p class="cart-modal__position">Труба профильная 50х50x3, ст.0-20, ГОСТ 13663-86</p>
-            <div class="cart-modal__price">58 920 ₽/т</div>
-            <div class="cart-modal__total">59 920 ₽</div>
-         </div>
-         <div class="cart-modal__ui">
-            <div class="cart-modal__unit">
-               <a href="#" class="cart-modal__unit-tab"></a>
-               <a href="#" class="cart-modal__unit-tab"></a>
-            </div>
-            <div class="cart-modal__amount">
-               <span class="cart-modal__minus"></span>
-               <input class="cart-modal__amount-value" value="30,00">
-               <span class="cart-modal__plus"></span>
-            </div>
-         </div>
-      </div>
-      <div class="cart-modal__footer">
-         <a href="#">Продолжить покупки</a>
-         <a href="#">Перейти в корзину</a>
-      </div>
-   </div> -->
+   
    <main>
       <section class="autosearch">
          <div class="autosearch__container">
@@ -88,7 +64,7 @@
                      <p class="search-request__text lh_156">Отправьте заявку на почту <br>и получите результат поиска<br> ответным письмом</p>
                      <div class="search-request__link-wrapper">
                         <a href="mailto:order+507@e-metall.ru" class="search-request__link fw_600 fs_24">order+507@e-metall.ru</a>
-                        <img src="img/copy.svg">
+                        <img src="img/copy.svg" id="search-request__copy-btn">
                      </div>
                   </div>
                </div>
@@ -114,7 +90,44 @@
          </ul>
       </section>
    </main>
-
+   <div class="modal-wrapper hidden" id="modal-card-window">
+      <div class="backdrop hidden modal-card__backdrop" id="modal-card__backdrop"></div>
+      <div class="cart-modal">
+         <img src="img/modal-close-gray.svg" class="cart-modal__close" id="cart-modal__close-btn">
+         <div class="cart-modal__container">
+            <h3 class="cart-modal__title fs_24 fw_600">Товар добавлен в корзину</h3>
+            <div class="cart-modal__body">
+               <div class="cart-modal__info">
+                  <p class="cart-modal__position fw_600">Труба профильная 50х50x3, ст.0-20, ГОСТ 13663-86</p>
+                  <div class="cart-modal__price">58 920 ₽/т</div>
+                  <div class="cart-modal__total fw_600 fs_20">59 920 ₽</div>
+               </div>
+               <div class="cart-modal__ui">
+                  <div class="cart-modal__unit fw_600 fs_12">
+                     <div class="cart-modal__unit-tab active">Кг</div>
+                     <div class="cart-modal__unit-tab">Метры</div>
+                  </div>
+                  <div class="cart-modal__amount">
+                     <span class="cart-modal__minus" id="cart-modal__minus"></span>
+                     <input
+                        class="cart-modal__amount-value fs_20" 
+                        id="cart-modal__amount-value"
+                        type="text"
+                        step="0.01"
+                        value="30.00"
+                     >
+                     <span class="cart-modal__plus" id="cart-modal__plus"></span>
+                  </div>
+               </div>
+            </div>
+            
+         </div>
+         <div class="cart-modal__footer">
+            <a href="#" class="btn btn_lightblue" id="cart-modal__return">Продолжить покупки</a>
+            <a href="#" class="btn">Перейти в корзину</a>
+         </div>
+      </div>
+   </div>
    <script src="js/script.js"></script>
 </body>
 </html>

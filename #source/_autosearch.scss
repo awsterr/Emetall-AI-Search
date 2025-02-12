@@ -6,7 +6,7 @@ a {
 }
 
 .backdrop {
-   position: absolute;
+   position: fixed;
    top: 0;
    left: 0;
    width: 100%;
@@ -14,8 +14,7 @@ a {
    background: #000;
    opacity: .6;
    z-index: 10;
-   display: block;
-   transition: opacity 1s ease;
+   // transition: opacity 1s ease;
 
    &.hidden {
       display: none;
@@ -233,7 +232,7 @@ main {
 
             .search-request {
                background-color: #191B1D;
-               background-image: url(/img/request-bg.png);
+               background-image: url(../img/request-bg.png);
                background-repeat: no-repeat;
                background-position: top right;
                color: #FFFFFF;
@@ -251,6 +250,10 @@ main {
                &__link-wrapper {
                   display: flex;
                   gap: 16px;
+
+                  img {
+                     cursor: pointer;
+                  }
                }
 
                &__link {
@@ -651,5 +654,174 @@ table {
       100% {
          transform: scaleY(-1) rotate(-135deg)
       }
+   }
+}
+
+.modal-wrapper {
+   position: fixed;
+   z-index: 11;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   &.hidden {
+      display: none;
+   }
+
+   .modal-card__backdrop {
+      z-index: 0;
+   }
+
+   .cart-modal {
+      background: #FFFFFF;
+      // max-width: 712px;
+      // min-height: 274px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      position: relative;
+      // border: 1px solid #000;
+
+      .cart-modal__close {
+         position: absolute;
+         padding: 10px;
+         top: 14px;
+         right: 14px;
+         cursor: pointer;
+      }
+
+      .cart-modal__container {
+         padding: 32px 40px 0;
+         width: 100%;
+      }
+
+      &__title {
+         justify-self: start;
+      }
+
+      &__body {
+         display: flex;
+         justify-content: space-between;
+         padding-top: 28px;
+         padding-bottom: 24px;
+
+         .cart-modal__info {
+            max-width: 50%;
+
+            .cart-modal__position {
+               margin-bottom: 6px;
+               white-space: break-spaces;
+            }
+
+            .cart-modal__price {
+               display: inline-block;
+            }
+
+            .cart-modal__total {
+               display: inline-block;
+               margin-left: 20px;
+            }
+         }
+
+         .cart-modal__ui {
+            max-width: 170px;
+
+            .cart-modal__unit {
+               display: flex;
+               margin-bottom: 8px;
+
+               &-tab {
+                  border: 1px solid #DDDDDD;
+                  width: 100%;
+                  text-align: center;
+                  padding: 5px;
+                  cursor: pointer;
+                  user-select: none;
+
+                  &:first-child {
+                     border-top-left-radius: 5px;
+                     border-bottom-left-radius: 5px;
+                     border-right: none;
+                  }
+
+                  &:last-child {
+                     border-top-right-radius: 5px;
+                     border-bottom-right-radius: 5px;
+                  }
+
+                  &.active {
+                     background: #F2F2F4;
+                  }
+               }
+            }
+
+            .cart-modal__amount {
+               position: relative;
+
+               .cart-modal__minus {
+                  background-image: url(../img/cart_minus.svg);
+                  left: 8px;
+               }
+
+               .cart-modal__minus,
+               .cart-modal__plus {
+                  display: inline-block;
+                  width: 16px;
+                  height: 16px;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  position: absolute;
+                  top: 8px;
+                  margin: 6px;
+                  cursor: pointer;
+                  color: $text-color;
+                  transition: color .5s ease;
+
+                  &.active {
+                     color: $blue;
+                  }
+               }
+
+               &-value {
+                  border: 1px solid #DDDDDD;
+                  padding: 9px;
+                  text-align: center;
+                  border-radius: 5px;
+                  outline: 4px solid #E9F0FC;
+                  width: 100%;
+
+                  &:focus {
+                     border: 1px solid $blue;
+                  }
+               }
+
+               .cart-modal__plus {
+                  background-image: url(../img/cart_plus.svg);
+                  right: 8px;
+
+               }
+            }
+         }
+      }
+
+      &__footer {
+         display: flex;
+         min-height: 88px;
+         min-width: 100%;
+         gap: 24px;
+         padding: 20px 40px 24px;
+         border-top: 1px solid #F2F2F4;
+
+         a {
+            width: 100%;
+         }
+      }
+
    }
 }

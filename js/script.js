@@ -59,7 +59,7 @@ placeholder.addEventListener('click',()=>{
 // Логика перетаскивания файлов
 const searchBlock = document.getElementById('autosearch-form')
 const searchDragover = document.getElementById('autosearch-dragover')
-const backdrop = document.getElementById('backdrop')
+const backdrop = document.getElementById('dragover-backdrop')
 const closeDragover = document.getElementById('close-btn')
 
 let dragCounter = 0
@@ -99,7 +99,12 @@ docpicker.addEventListener('change',(event)=>{
    handleFileRead()
    const files = event.target.files
    console.dir(files)
-}) 
+})
+
+const copyBtn = document.getElementById('search-request__copy-btn')
+copyBtn.addEventListener('click',()=>{
+   navigator.clipboard.writeText('order+507@e-metall.ru')
+})
 
 
 
@@ -445,15 +450,64 @@ findBtn.addEventListener('click',(event)=>{
 })
 
 
-// function openCartModal(){
+function openCartModal(){
+   const modal = document.getElementById('modal-card-window')
+   modal.classList.remove('hidden')
+   cartBackdrop.classList.remove('hidden')
+}
+function closeCartModal(){
+   const modal = document.getElementById('modal-card-window')
+   modal.classList.add('hidden')
+   cartBackdrop.classList.add('hidden')
+}
+const closeModalBtn = document.getElementById('cart-modal__close-btn')
+closeModalBtn.addEventListener('click',closeCartModal)
 
-// }
+const cartBackdrop = document.getElementById('modal-card__backdrop')
+cartBackdrop.addEventListener('click',closeCartModal)
+
+const returnBtn = document.getElementById('cart-modal__return')
+returnBtn.addEventListener('click',closeCartModal)
 
 
+const cartModalAmount = document.getElementById('cart-modal__amount-value')
+const cartModalPlus = document.getElementById('cart-modal__plus')
+const cartModalMinus = document.getElementById('cart-modal__minus')
+cartModalPlus.addEventListener("click", () => {
+   let value = getValue()
+   updateValue(value + 1)
+})
+cartModalMinus.addEventListener("click", () => {
+   let value = getValue()
+   updateValue(Math.max(0, value - 1))
+})
+cartModalAmount.addEventListener("input", () => {
+   let value = cartModalAmount.value.replace(",", ".")
+   if (!/^\d+(\.\d{0,2})?$/.test(value)) {
+      cartModalAmount.value = getValue().toFixed(2).replace(".", ",")
+   }
+});
+
+function getValue() {
+   let rawValue = cartModalAmount.value.replace(",", ".")
+   let parsedValue = parseFloat(rawValue)
+   return isNaN(parsedValue) ? 0 : parsedValue
+}
+
+function updateValue(value) {
+   cartModalAmount.value = value.toFixed(2).replace(".", ",")
+}
 
 
-
-
+const cartTabs = document.querySelectorAll('.cart-modal__unit-tab')
+cartTabs.forEach((tab)=>{
+   tab.addEventListener('click',()=>{
+      cartTabs.forEach((tab)=>{
+         tab.classList.remove('active')
+      })
+      tab.classList.add('active')
+   })
+})
 
 
 findResults()
