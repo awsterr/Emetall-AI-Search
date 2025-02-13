@@ -64,6 +64,7 @@ a {
 // }
 
 main {
+
    .secondary-btn {
       font-size: 14px;
       border: 1px solid $blue;
@@ -84,7 +85,11 @@ main {
       background: #F2F2F4;
 
       &__container {
-         padding: 24px 112px 40px 112px;
+         // padding: 24px 112px  112px;
+         padding-top: 24px;
+         padding-bottom: 40px;
+         max-width: 1456px;
+         margin: 0 auto;
       }
 
       &__header {}
@@ -301,7 +306,9 @@ main {
 
    .search-results {
       display: none;
-      padding: 52px 112px;
+      padding: 52px 0;
+      max-width: 1456px;
+      margin: 0 auto;
 
       &__header {
          display: flex;

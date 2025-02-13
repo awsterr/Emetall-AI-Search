@@ -1280,7 +1280,10 @@ main .autosearch {
   background: #F2F2F4;
 }
 main .autosearch__container {
-  padding: 24px 112px 40px 112px;
+  padding-top: 24px;
+  padding-bottom: 40px;
+  max-width: 1456px;
+  margin: 0 auto;
 }
 main .autosearch__title {
   margin-bottom: 12px;
@@ -1459,7 +1462,9 @@ main .autosearch__body .progress__container .progress-bg .progress-line {
 }
 main .search-results {
   display: none;
-  padding: 52px 112px;
+  padding: 52px 0;
+  max-width: 1456px;
+  margin: 0 auto;
 }
 main .search-results__header {
   display: flex;
