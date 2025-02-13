@@ -98,7 +98,6 @@ const docpicker = document.getElementById('docpicker')
 docpicker.addEventListener('change',(event)=>{
    handleFileRead()
    const files = event.target.files
-   console.dir(files)
 })
 
 const copyBtn = document.getElementById('search-request__copy-btn')
@@ -153,18 +152,8 @@ function findResults(){
          standard:'13663-86',
          amount:'30',
          unit:'Кг',
-        },
-        {
-         id:4,
-         name:'Труба профильная',
-         size:'50x50',
-         thickness:'3',
-         steelGrade:'ст.0-20',
-         standard:'13663-86',
-         amount:'30',
-         unit:'Кг',
         }
-     ]
+   ]
    
    const tableHeaders = {
       diametr:'Диаметр',
@@ -215,11 +204,154 @@ function findResults(){
          warehouse:'Металлторг',
          city:'Екатеринбург',
       },
+      {
+         id:1,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         id:2,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         id:3,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         id:1,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         id:2,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         id:3,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         id:1,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         id:2,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         id:3,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         id:1,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         id:2,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         id:3,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
       
    ]
    function renderTableData(id){
       const table = document.getElementById('table_'+id)
-      
       const tableHeaderRow = document.createElement('tr')
       tableHeaderRow.classList.add('result-table__headers-row')
       for(let key in tableHeaders){
@@ -335,8 +467,6 @@ function findResults(){
    
    const resutlsCounter = document.querySelector('.search-results__title')
    resutlsCounter.innerHTML = `Распознано ${results.length} позиции`
-
-   // const searchConteiner = document.querySelector('.search-results')
    searchConteiner.style.display = 'block'
    
    const resultList = document.getElementById('search-results__list')
@@ -392,9 +522,7 @@ function findResults(){
                         <img src="img/search-close.svg">
                      </button>
                   </div>
-                  <div class="result-item__body">
-                     <table class="result-table" id="table_${position.id}">
-                     </table>
+                  <div class="result-item__body" id="table-container_${position.id}">
                   </div>`
       resultList.appendChild(li)
    
@@ -412,35 +540,37 @@ function findResults(){
    
       const moreBtn = document.createElement('a')
       moreBtn.classList.add('secondary-btn','btn_44','result-item__btn-more')
+      moreBtn.style.display = 'none'
       moreBtn.setAttribute('id',`btn-more_${position.id}`)
       li.appendChild(moreBtn)
    
-      renderTableData(position.id)
    })
+   mockTableGenerator(results)
+   tableUpdate()
    
-   function blurTable(id){
-      const table = document.getElementById('table_'+id)
-      if (!table) return;
-      const loadingBlur = document.createElement('div')
-      loadingBlur.classList.add('loading-container')
-      const circle = document.createElement('div')
-      circle.classList.add('loading-circle')
-      table.appendChild(loadingBlur)
-      loadingBlur.appendChild(circle)
-      const refreshBtns = document.querySelectorAll('.result-item__btn-more')
-      console.dir(refreshBtns)
+}
+
+function blurTable(id){
+   const table = document.getElementById('table_'+id)
+   if (!table) return;
+   const loadingBlur = document.createElement('div')
+   loadingBlur.classList.add('loading-container')
+   const circle = document.createElement('div')
+   circle.classList.add('loading-circle')
+   table.appendChild(loadingBlur)
+   loadingBlur.appendChild(circle)
+   const refreshBtns = document.querySelectorAll('.result-item__btn-more')
+   refreshBtns.forEach((btn)=>{
+      btn.classList.add('disable')
+   })
+   // Здесь запрос делать
+   setTimeout(() => {
+      loadingBlur.remove();
       refreshBtns.forEach((btn)=>{
-         btn.classList.add('disable')
+         btn.classList.remove('disable')
       })
-      // Здесь запрос делать
-      setTimeout(() => {
-         loadingBlur.remove();
-         refreshBtns.forEach((btn)=>{
-            btn.classList.remove('disable')
-         })
-   
-      }, 3000);
-   }
+
+   }, 3000);
 }
 
 const findBtn = document.getElementById('btn-find')
@@ -511,3 +641,275 @@ cartTabs.forEach((tab)=>{
 
 
 findResults()
+
+
+
+
+
+
+
+
+function mockTableGenerator(results){
+   // doing smthg....
+   // geting html
+   results.forEach((position)=>{
+
+      const tableData = getTableData()
+      const tableContainer = document.getElementById('table-container_'+position.id)
+
+      const table = document.createElement('table')
+      table.classList.add('table','table-striped')
+      table.setAttribute('id',`table_${position.id}`)
+      
+      const tableHeader = document.createElement('thead')
+      tableHeader.innerHTML = `<tr>${Object.values(getTableHeaders()).map((header)=>{
+         return '<th>'+header+'</th>'
+      }).join('')}</tr>`
+      table.appendChild(tableHeader)
+
+      const tableBody = document.createElement('tbody')
+      tableData.forEach((element)=>{
+         let tr = '<tr>'
+         for(let key in element){
+            tr +=`<td>${element[key]}</td>`
+         }
+         tableBody.innerHTML += tr + '</tr>'
+      })
+      table.appendChild(tableBody)
+
+      tableContainer.appendChild(table)
+
+   })
+}
+function getTableData(){
+   return [
+      {
+         // id:1,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         // id:2,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         // id:3,
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+   ]
+}
+function getTableHeaders(){
+   return {
+      diametr:'Диаметр',
+      thickness:'Стенка',
+      steelGrade:'Марка стали',
+      standard:'Стандарт',
+      length:'Длина',
+      amount:'Наличие',
+      price:'Цена, руб с НДС',
+      warehouse:'Металлобаза',
+      city:'Город',
+   }
+}
+// mockTableGenerator()
+
+function tableUpdate(){
+   const tablesColection = document.querySelectorAll('.table.table-striped')
+   if (tablesColection.length === 0) return
+   
+   tablesColection.forEach((table)=>{
+      const thead = table.querySelector("thead");
+      const tbody = table.querySelector("tbody");
+      if (thead) thead.classList.add("result-table__thead");
+      if (tbody) tbody.classList.add("result-table__tbody");
+
+      thead?.querySelectorAll("tr").forEach(tr=>tr.classList.add('result-table__thead-tr'))
+      tbody?.querySelectorAll("tr").forEach(tr=>tr.classList.add('result-table__tbody-tr'))
+
+      let infoColumnIndex = -1
+      let warehouseColumnIndex = -1
+      thead.querySelectorAll("tr").forEach(tr => {
+         tr.querySelectorAll("th").forEach((th,index) => {
+            if (th.textContent.trim() === "Цена, руб с НДС") {
+               const newTh = document.createElement("th");
+               newTh.classList.add('info')
+               tr.insertBefore(newTh, th)
+
+               infoColumnIndex = index
+            }
+            if (th.textContent.trim() === "Металлобаза") {
+               warehouseColumnIndex = index
+            }
+         });
+      });
+      if(infoColumnIndex !== -1){
+         tbody.querySelectorAll('tr').forEach(tr=>{
+            const tdList = tr.querySelectorAll('td')
+            const newTd = document.createElement('td')
+            newTd.classList.add('info')
+
+            const img = document.createElement('div')
+            img.classList.add('info-icon')
+            newTd.appendChild(img)
+
+            newTd.innerHTML += `<div class="extra-info">
+      <div class="extra-info__header">
+         
+         <div>Инфо</div>
+         <span>Дата обновления 27.11.2024</span>
+      </div>
+      <dl class="extra-info__dl">
+            <dt class="extra-info__dl-termin">Наименование</dt>
+            <dd class="extra-info__dl-data">Труба стальная профильная 50х50</dd>
+            <dt class="extra-info__dl-termin">Цена</dt>
+            <dd class="extra-info__dl-data">53 400 руб/т</dd>
+            <dt class="extra-info__dl-termin">Стандарт</dt>
+            <dd class="extra-info__dl-data">-</dd>
+      </dl>
+   </div>`
+            
+            if(tdList.length>infoColumnIndex){
+               tr.insertBefore(newTd,tdList[infoColumnIndex])
+            } else {
+               tr.appendChild(newTd)
+            }
+         })
+      }
+      if (warehouseColumnIndex !== -1){
+         tbody.querySelectorAll("tr").forEach(tr => {
+            const tdList = tr.querySelectorAll("td");
+            if (tdList.length > warehouseColumnIndex) {
+               const targetTd = tdList[warehouseColumnIndex+1];
+               targetTd.classList.add("warehouse");
+
+               const span = document.createElement("span");
+               span.textContent = "10";
+
+               const link = document.createElement("a")
+               link.href = "https://e-metall.ru/postavshhiki/";
+               link.textContent = targetTd.textContent.trim()
+               targetTd.innerHTML = "";
+               targetTd.appendChild(span);
+               targetTd.appendChild(link);
+            }
+         });
+      }
+
+      tbody.querySelectorAll("tr").forEach(tr => {
+         const newTd = document.createElement("td");
+
+         // Создаем <a> кнопку "В корзину"
+         const cartButton = document.createElement("a");
+         cartButton.classList.add("btn-cart", "btn");
+         cartButton.textContent = "В корзину";
+         cartButton.addEventListener('click',openCartModal)
+
+         // Создаем контейнер <div> с изображением more.svg
+         const moreContainer = document.createElement("div");
+         moreContainer.classList.add("more-container");
+
+
+         const moreImage = document.createElement("img");
+         moreImage.src = "img/more.svg";
+         // Добавляем изображение внутрь контейнера
+         moreContainer.appendChild(moreImage);
+
+         const moreMenu = document.createElement("div");
+         moreMenu.classList.add('more-menu')
+         moreMenu.innerHTML = `<div class="more-option">
+         <img src="img/export.svg" alt="">
+         <a href="">Поделиться</a>
+      </div>
+      <div class="more-option">
+         <img src="img/providerscard-rekw.svg" alt="">
+         <a href="">Скачать прайс-лист</a>
+      </div>
+      <div class="more-option">
+         <img src="img/providerscard-rekw.svg" alt="">
+         <a href="">Скачать реквизиты</a>
+      </div>
+      <div class="more-option warning">
+         <img src="img/providerscard-red.svg" alt="">
+         <a href="">Сообщить о несоответсвии</a>
+      </div>`
+         moreContainer.appendChild(moreMenu);
+
+         // Добавляем кнопку и контейнер внутрь <td>
+         newTd.appendChild(cartButton);
+         newTd.appendChild(moreContainer);
+
+         // Добавляем новый <td> в <tr>
+         tr.appendChild(newTd);
+      });
+
+      thead.querySelector("tr").appendChild(document.createElement("th"))
+
+      thead?.querySelectorAll("th").forEach(th => th.classList.add("result-table__th"));
+      tbody?.querySelectorAll("td").forEach(td => td.classList.add("result-table__td"));
+   
+   })
+}
+
+document.querySelectorAll('.info-icon').forEach(icon => {
+   const extraInfo = icon.nextElementSibling;
+
+   if (extraInfo && extraInfo.classList.contains('extra-info')) {
+      icon.addEventListener('mouseover', () => {
+         extraInfo.style.display = 'block';
+      });
+
+      icon.addEventListener('mouseout', () => {
+         extraInfo.style.display = 'none';
+      });
+   }
+});
+document.querySelectorAll('.more-container').forEach(more => {
+   const extraInfo = more.children[1];
+   if (extraInfo && extraInfo.classList.contains('more-menu')) {
+      more.addEventListener('click', (event) => {
+         event.stopPropagation()
+         document.querySelectorAll('.more-menu').forEach(menu => {
+            if (menu !== extraInfo) menu.style.display = 'none';
+            menu.closest('.more-container').style.background = ''
+         });
+         if (extraInfo.style.display === 'block') {
+            extraInfo.style.display = 'none';
+            more.style.background = ''; // Сброс фона
+         } else {
+            extraInfo.style.display = 'block';
+            more.style.background = '#E3E3E3'; // Установка фона
+         }
+      });
+      
+   }
+});
+document.addEventListener('click', () => {
+   document.querySelectorAll('.more-menu').forEach(menu => {
+      menu.style.display = 'none';
+      menu.closest('.more-container').style.background = ''
+   });
+});
+// tableUpdate()

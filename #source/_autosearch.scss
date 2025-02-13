@@ -464,6 +464,7 @@ main {
                         text-align: right;
                      }
                   }
+
                }
             }
 
@@ -481,7 +482,287 @@ main {
                img {}
             }
 
-            &__body {}
+            &__body {
+               .table.table-striped {
+                  width: 100%;
+                  border-spacing: 0;
+                  border-collapse: collapse;
+                  color: #212529;
+                  position: relative;
+
+                  tr {
+                     height: 43px;
+
+                     &.result-table__tbody-tr:nth-child(odd) {
+                        background: #F8F8F8;
+                     }
+
+                  }
+
+                  .result-table__thead-tr {
+                     th {
+                        font-size: 13px;
+                        font-weight: 600;
+                     }
+                  }
+
+                  .result-table__td,
+                  .result-table__th {
+                     border-bottom: 1px solid #DFE2E6;
+                     padding: 0 14px;
+                     font-size: 14px;
+
+                     &.info {
+                        padding: 0;
+                        position: relative;
+
+
+                        .info-icon {
+                           background-image: url(../img/info-gray.svg);
+                           border-radius: 100%;
+                           background-color: rgba(0, 0, 0, 0);
+                           background-position: center;
+                           background-repeat: no-repeat;
+                           background-size: contain;
+                           margin-top: 3px;
+                           width: 18px;
+                           height: 18px;
+                           transition: background-image .3s;
+                           cursor: pointer;
+
+                           &:hover {
+                              // background-color: #2764e0;
+                              background-image: url(../img/info_hover.svg);
+                           }
+
+                        }
+
+                        .extra-info {
+                           display: none;
+                           position: absolute;
+                           z-index: 10;
+                           top: 32px;
+                           left: 20px;
+                           border-radius: 12px;
+                           box-shadow: 0px 8px 20px 0px #00000033;
+                           background: #FFFFFF;
+                           min-width: 350px;
+
+                           &__header {
+                              font-size: 12px;
+                              font-weight: 600;
+                              padding: 6px 12px;
+                              background-color: #FDF3E7;
+                              border-top-left-radius: 12px;
+                              border-top-right-radius: 12px;
+                              display: flex;
+                              justify-content: space-between;
+
+                              span {
+                                 display: inline-block;
+                                 margin-left: auto;
+                                 font-weight: 400;
+                                 color: #1A913C;
+                                 // text-align: right;
+                              }
+                           }
+
+                           &__dl {
+                              padding: 8px 12px 12px;
+                              display: grid;
+                              grid-template-columns: auto auto;
+                              grid-template-rows: repeat(3, auto);
+                              gap: .2em 15px;
+
+                              .extra-info__dl-element {
+
+                                 .extra-info__dl-termin {}
+
+                                 .extra-info__dl-data {}
+                              }
+                           }
+                        }
+                     }
+
+                     &.warehouse {
+                        color: $blue;
+
+                        span {
+                           display: inline-flex;
+                           justify-content: center;
+                           align-items: center;
+                           width: 27px;
+                           height: 18px;
+                           font-size: 11px;
+                           color: #279C0A;
+                           background-image: url(../img/table-raiting-bg.svg);
+                           background-position: center;
+                           background-repeat: no-repeat;
+                           padding-right: 3px;
+                           padding-bottom: 2px;
+                           margin-right: 8px;
+                           // padding: 4px 13px 7px 8px;
+                        }
+
+                        a:visited {
+                           color: $blue;
+                        }
+                     }
+
+                     .btn-cart {
+                        display: inline-block;
+                        height: 24px;
+                        padding: 2px 10px;
+                        font-size: 14px;
+                        margin-right: 26px;
+                     }
+
+
+                     &:last-child {
+                        text-align: right;
+
+                     }
+
+                     .more-container {
+
+                        display: inline-flex;
+                        position: relative;
+                        width: 27px;
+                        height: 27px;
+                        cursor: pointer;
+                        padding: 6px;
+                        border-radius: 4px;
+
+                        img {
+                           height: 100%;
+                           width: 100%;
+                           object-fit: contain;
+                        }
+
+                        &:active {
+                           background: #E3E3E3;
+                        }
+
+                        .more-menu {
+                           padding: 10px 12px 18px;
+                           border-radius: 12px;
+                           width: fit-content;
+                           box-shadow: 0px 8px 20px 0px #00000033;
+                           background: #FFFFFF;
+                           position: absolute;
+                           z-index: 10;
+                           top: 27px;
+                           right: 0;
+                           display: none;
+
+                           .more-option {
+                              padding: 12px;
+                              border-radius: 5px;
+                              display: flex;
+                              align-items: center;
+                              white-space: nowrap;
+                              gap: 8px;
+
+                              &:hover {
+                                 background: #F5F5F5;
+                              }
+
+                              img {
+                                 object-fit: contain;
+                                 height: 14px;
+                                 width: 14px;
+                              }
+
+                              &.warning {
+                                 color: $raspberry;
+
+                                 :visited {
+                                    color: $raspberry;
+                                 }
+                              }
+
+                              :visited {
+                                 color: $text-color;
+                              }
+                           }
+                        }
+
+                     }
+                  }
+
+                  .loading-container {
+                     position: absolute;
+                     top: 0;
+                     left: 0;
+                     bottom: 0;
+                     right: 0;
+                     background: #FFFFFF;
+                     opacity: .9;
+
+                     .loading-circle {
+                        position: relative;
+                        top: 0;
+                        margin: 0 auto;
+                        width: 48px;
+                        aspect-ratio: 1;
+                        border-radius: 50%;
+                        border: 4px solid $blue;
+                        animation:
+                           l20-1 0.8s infinite linear alternate,
+                           l20-2 1.6s infinite linear;
+                     }
+                  }
+
+
+                  @keyframes l20-1 {
+                     0% {
+                        clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%)
+                     }
+
+                     12.5% {
+                        clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%)
+                     }
+
+                     25% {
+                        clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%)
+                     }
+
+                     50% {
+                        clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
+                     }
+
+                     62.5% {
+                        clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
+                     }
+
+                     75% {
+                        clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%)
+                     }
+
+                     100% {
+                        clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%)
+                     }
+                  }
+
+                  @keyframes l20-2 {
+                     0% {
+                        transform: scaleY(1) rotate(0deg)
+                     }
+
+                     49.99% {
+                        transform: scaleY(1) rotate(135deg)
+                     }
+
+                     50% {
+                        transform: scaleY(-1) rotate(0deg)
+                     }
+
+                     100% {
+                        transform: scaleY(-1) rotate(-135deg)
+                     }
+                  }
+               }
+            }
 
             &__btn-more {
                // width: 100%;
@@ -499,163 +780,7 @@ main {
    }
 }
 
-table {
-   width: 100%;
-   border-spacing: 0;
-   border-collapse: collapse;
-   color: #212529;
-   position: relative;
 
-   tr {
-      height: 43px;
-
-      &:nth-child(even) {
-         background: #F8F8F8;
-      }
-
-   }
-
-   .result-table__headers-row {
-      td {
-         // border-top: none;
-         font-size: 13px;
-         font-weight: 600;
-
-      }
-   }
-
-   td {
-      // border: 1px solid #000;
-      // border-top: 1px solid #DFE2E6;
-      border-bottom: 1px solid #DFE2E6;
-      padding: 0 14px;
-      font-size: 14px;
-
-      // &.interactiv-container {
-      &.info {
-         padding: 0;
-      }
-
-      &.warehouse {
-         color: $blue;
-
-         span {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 27px;
-            height: 18px;
-            font-size: 11px;
-            color: #279C0A;
-            background-image: url(../img/table-raiting-bg.svg);
-            background-position: center;
-            background-repeat: no-repeat;
-            padding-right: 3px;
-            padding-bottom: 2px;
-            margin-right: 8px;
-            // padding: 4px 13px 7px 8px;
-         }
-
-         a:visited {
-            color: $blue;
-         }
-      }
-
-      .btn-cart {
-         display: inline-block;
-         height: 24px;
-         padding: 2px 10px;
-         font-size: 14px;
-         margin-right: 26px;
-      }
-
-      &:last-child {
-         text-align: right;
-
-      }
-
-      .more-container {
-
-         display: inline-flex;
-         position: relative;
-         bottom: 3px;
-      }
-
-      // }
-   }
-
-   .loading-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background: #FFFFFF;
-      opacity: .9;
-
-      .loading-circle {
-         position: relative;
-         top: 0;
-         margin: 0 auto;
-         width: 48px;
-         aspect-ratio: 1;
-         border-radius: 50%;
-         border: 4px solid $blue;
-         animation:
-            l20-1 0.8s infinite linear alternate,
-            l20-2 1.6s infinite linear;
-      }
-   }
-
-
-   @keyframes l20-1 {
-      0% {
-         clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%)
-      }
-
-      12.5% {
-         clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%)
-      }
-
-      25% {
-         clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%)
-      }
-
-      50% {
-         clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
-      }
-
-      62.5% {
-         clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
-      }
-
-      75% {
-         clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%)
-      }
-
-      100% {
-         clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%)
-      }
-   }
-
-   @keyframes l20-2 {
-      0% {
-         transform: scaleY(1) rotate(0deg)
-      }
-
-      49.99% {
-         transform: scaleY(1) rotate(135deg)
-      }
-
-      50% {
-         transform: scaleY(-1) rotate(0deg)
-      }
-
-      100% {
-         transform: scaleY(-1) rotate(-135deg)
-      }
-   }
-}
 
 .modal-wrapper {
    position: fixed;
