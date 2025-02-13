@@ -306,7 +306,7 @@ cartModalAmount.addEventListener("input", () => {
    if (!/^\d+(\.\d{0,2})?$/.test(value)) {
       cartModalAmount.value = getValue().toFixed(2).replace(".", ",")
    }
-});
+})
 
 function getValue() {
    let rawValue = cartModalAmount.value.replace(",", ".")
@@ -330,7 +330,6 @@ cartTabs.forEach((tab)=>{
 })
 
 
-findResults()
 
 
 
