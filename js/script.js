@@ -3,34 +3,69 @@ const ROWS_PER_PAGE = 8
 
 
 // Логика для линии прогресса
-const progressBar = document.getElementById('progress');
-const progressStatus = document.getElementById('progress-status');
-const progresBlock = document.getElementById('progress-container');
-
+const progressBar = document.getElementById('progress')
+const progressStatus = document.getElementById('progress-status')
+const progresBlock = document.getElementById('progress-container')
+const formResults = document.querySelector('.form-results')
 
 //Функция по изменению прогресса
 const changeProgress = (progress) => {
-  progressBar.style.width = `${progress}%`;
+  progressBar.style.width = `${progress}%`
+  progressBar.style.outline = '4px solid rgba(39, 100, 224, .1)'
   progressStatus.innerHTML = progress + '%...  Идет обработка'
   if (progress===100){
-   progresBlock.classList.add('hidden')
+   progressStatus.innerHTML = '100% Завершено'
   }
-};
+}
 // Моковый прогресс
 function handleFileRead(){
-   progresBlock.classList.remove('hidden')
-   setTimeout(() => changeProgress(9), 1000);
-   setTimeout(() => changeProgress(24), 2000);
-   setTimeout(() => changeProgress(34), 3000);
-   setTimeout(() => changeProgress(38), 3866);
-   setTimeout(() => changeProgress(42), 4000);
-   setTimeout(() => changeProgress(45), 4500);
-   setTimeout(() => changeProgress(85), 5600);
-   setTimeout(() => changeProgress(98), 6266);
+   formResults.style.display = 'flex'
+
+   setTimeout(() => changeProgress(9), 1000)
+   setTimeout(() => changeProgress(24), 2000)
+   setTimeout(() => changeProgress(34), 3000)
+   setTimeout(() => changeProgress(38), 3866)
+   setTimeout(() => changeProgress(42), 4000)
+   setTimeout(() => changeProgress(45), 4500)
+   setTimeout(() => changeProgress(85), 5600)
+   setTimeout(() => changeProgress(98), 6266)
    setTimeout(() => {
       changeProgress(100)
-      findResults()
-   }, 8000);
+      formResults.classList.add('finished')
+      textarea.dispatchEvent(new Event('blur'))
+      findResults([
+         {
+            id:1,
+            name:'Труба профильная',
+            size:'50x50',
+            thickness:'3',
+            steelGrade:'ст.0-20',
+            standard:'13663-86',
+            amount:'30',
+            unit:'Кг',
+           },
+           {
+            id:2,
+            name:'Труба профильная',
+            size:'50x50',
+            thickness:'2',
+            steelGrade:'ст.0-20',
+            standard:'13663-86',
+            amount:'100',
+            unit:'Кг',
+           },
+           {
+            id:3,
+            name:'Труба профильная',
+            size:'50x50',
+            thickness:'3',
+            steelGrade:'ст.0-20',
+            standard:'13663-86',
+            amount:'30',
+            unit:'Кг',
+           }
+      ])
+   }, 8000)
 }
 
 
@@ -62,6 +97,7 @@ const searchDragover = document.getElementById('autosearch-dragover')
 const backdrop = document.getElementById('dragover-backdrop')
 const closeDragover = document.getElementById('close-btn')
 
+
 let dragCounter = 0
 
 function hideDragover(){
@@ -81,6 +117,7 @@ searchBlock.addEventListener('dragenter', (event) => {
 searchBlock.addEventListener('dragover', (event) => {
    event.preventDefault()
    event.stopPropagation()
+   event.dataTransfer.dropEffect = 'copy'
 })
 searchBlock.addEventListener('dragleave', () => {
    dragCounter--
@@ -88,16 +125,21 @@ searchBlock.addEventListener('dragleave', () => {
 })
 searchBlock.addEventListener('drop', (event) => {
    event.preventDefault()
-   dragCounter = 0
+   const files = event.dataTransfer.files
    hideDragover()
+   dragCounter = 0
+   if (files.length === 0) return
    handleFileRead()
-});
+   showFileInfo(files[0])
+
+})
 closeDragover.addEventListener('click',hideDragover)
 
 const docpicker = document.getElementById('docpicker')
 docpicker.addEventListener('change',(event)=>{
    handleFileRead()
    const files = event.target.files
+   showFileInfo(files[0])
 })
 
 const copyBtn = document.getElementById('search-request__copy-btn')
@@ -106,6 +148,32 @@ copyBtn.addEventListener('click',()=>{
 })
 
 
+function showFileInfo(file){
+   const title = document.querySelector('.form-results__title span')
+   title.innerHTML = file.name
+
+   const subtitle = document.querySelector('.form-results__subtitle span')
+   subtitle.innerHTML = formatFileSize(file.size)
+
+   const logo = document.querySelector('.form-results__logo')
+   logo.classList.add('doc')
+
+   const h3 = document.querySelector('.form-results__container h3')
+   const number = 3
+   h3.innerHTML = `Распознано ${number} позиции`
+}
+
+function formatFileSize(size) {
+   const units = ["Б", "КБ", "МБ"]
+   let unitIndex = 0
+
+   while (size >= 1024 && unitIndex < units.length - 1) {
+       size /= 1024
+       unitIndex++
+   }
+
+   return `${size.toFixed(2)} ${units[unitIndex]}`
+}
 
 
 
@@ -114,49 +182,18 @@ copyBtn.addEventListener('click',()=>{
 
 
 
-
-function findResults(){
+function findResults(results){
    // Запрос на сервер, получаем константы
    
    const searchConteiner = document.querySelector('.search-results')
    searchConteiner.style.display = 'none'
    
+   const subscribePromo = document.querySelector('.subscribe-promo')
+   subscribePromo.style.display = 'none'
 
-   const results = [
-      {
-         id:1,
-         name:'Труба профильная',
-         size:'50x50',
-         thickness:'3',
-         steelGrade:'ст.0-20',
-         standard:'13663-86',
-         amount:'30',
-         unit:'Кг',
-        },
-        {
-         id:2,
-         name:'Труба профильная',
-         size:'50x50',
-         thickness:'2',
-         steelGrade:'ст.0-20',
-         standard:'13663-86',
-         amount:'100',
-         unit:'Кг',
-        },
-        {
-         id:3,
-         name:'Труба профильная',
-         size:'50x50',
-         thickness:'3',
-         steelGrade:'ст.0-20',
-         standard:'13663-86',
-         amount:'30',
-         unit:'Кг',
-        }
-   ]
    
-   const resutlsCounter = document.querySelector('.search-results__title')
-   resutlsCounter.innerHTML = `Распознано ${results.length} позиции`
+   
+   
    searchConteiner.style.display = 'block'
    
    const resultList = document.getElementById('search-results__list')
@@ -201,7 +238,14 @@ function findResults(){
                            <div class="position-filter__title fw_600">Количество</div>
                            <div class="position-filter__body double-input">
                               <input type="text" value="${position.amount}" class="amount-input-field">
-                              <input type="text" value="${position.unit}" class="amount-input-field">
+                              <input type="text" value="${position.unit}" class="amount-input-field unit">
+                              <div class="amount-input-icon"></div>
+                              <div class="amount-dropdown hidden">
+                                 <div class="dropdown-item" data-value="кг">Кг</div>
+                                 <div class="dropdown-item" data-value="т">Тонны</div>
+                                 <div class="dropdown-item" data-value="шт">Штуки</div>
+                                 <div class="dropdown-item" data-value="м">Метры</div>
+                              </div>
                            </div>
                         </div>
                         <div class="position-filter__item">
@@ -224,7 +268,7 @@ function findResults(){
       const close = document.getElementById('close_'+position.id)
       close.addEventListener('click',(event)=>{
          event.preventDefault()
-         li.remove();
+         li.remove()
       })
    
    
@@ -237,12 +281,79 @@ function findResults(){
    })
    mockTableGenerator(results)
    tableUpdate()
+   document.querySelectorAll('.info-icon').forEach(icon => {
+      const extraInfo = icon.nextElementSibling
+   
+      if (extraInfo && extraInfo.classList.contains('extra-info')) {
+         icon.addEventListener('mouseover', () => {
+            extraInfo.style.display = 'block'
+         })
+   
+         icon.addEventListener('mouseout', () => {
+            extraInfo.style.display = 'none'
+         })
+      }
+   })
+   document.querySelectorAll('.more-container').forEach(more => {
+      const extraInfo = more.children[1]
+      if (extraInfo && extraInfo.classList.contains('more-menu')) {
+         more.addEventListener('click', (event) => {
+            event.stopPropagation()
+            document.querySelectorAll('.more-menu').forEach(menu => {
+               if (menu !== extraInfo) menu.style.display = 'none'
+               menu.closest('.more-container').style.background = ''
+            })
+            if (extraInfo.style.display === 'block') {
+               extraInfo.style.display = 'none'
+               more.style.background = ''
+            } else {
+               extraInfo.style.display = 'block'
+               more.style.background = '#E3E3E3'
+            }
+         })
+         
+      }
+   })
+   document.addEventListener('click', () => {
+      document.querySelectorAll('.more-menu').forEach(menu => {
+         menu.style.display = 'none'
+         menu.closest('.more-container').style.background = ''
+      })
+   })
+   document.querySelectorAll('.amount-input-icon').forEach(icon => {
+      icon.addEventListener('click', (event) => {
+         event.stopPropagation()
+   
+         document.querySelectorAll('.amount-dropdown').forEach(dropdown => {
+            dropdown.classList.add('hidden')
+         })
+   
+         const input = icon.closest('.double-input').querySelector('.unit')
+         
+         let dropdown = icon.closest('.double-input').querySelector('.amount-dropdown')
+         dropdown.classList.toggle('hidden')
+   
+         dropdown.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', () => {
+               input.value = item.textContent.trim()
+               dropdown.classList.add('hidden')
+            })
+         })
+      })
+   })
+   document.addEventListener('click', () => {
+      document.querySelectorAll('.amount-dropdown').forEach(dropdown => {
+         dropdown.classList.add('hidden')
+      })
+   })
+
+   
    
 }
 
 function blurTable(id){
    const table = document.getElementById('table_'+id)
-   if (!table) return;
+   if (!table) return
    const loadingBlur = document.createElement('div')
    loadingBlur.classList.add('loading-container')
    const circle = document.createElement('div')
@@ -266,6 +377,17 @@ function blurTable(id){
 const findBtn = document.getElementById('btn-find')
 findBtn.addEventListener('click',(event)=>{
    event.preventDefault()
+
+   const title = document.querySelector('.form-results__title span')
+   title.innerHTML = 'Ваша заявка'
+
+   const subtitle = document.querySelector('.form-results__subtitle span')
+   subtitle.innerHTML = textarea.value.substring(0, 25) + "..."
+
+   const h3 = document.querySelector('.form-results__container h3')
+   const number = 3
+   h3.innerHTML = `Распознано ${number} позиции`
+
    handleFileRead()
 })
 
@@ -294,27 +416,27 @@ const cartModalAmount = document.getElementById('cart-modal__amount-value')
 const cartModalPlus = document.getElementById('cart-modal__plus')
 const cartModalMinus = document.getElementById('cart-modal__minus')
 cartModalPlus.addEventListener("click", () => {
-   let value = getValue()
-   updateValue(value + 1)
+   let value = getCartModalValue()
+   updateCartModalValue(value + 1)
 })
 cartModalMinus.addEventListener("click", () => {
-   let value = getValue()
-   updateValue(Math.max(0, value - 1))
+   let value = getCartModalValue()
+   updateCartModalValue(Math.max(0, value - 1))
 })
 cartModalAmount.addEventListener("input", () => {
    let value = cartModalAmount.value.replace(",", ".")
    if (!/^\d+(\.\d{0,2})?$/.test(value)) {
-      cartModalAmount.value = getValue().toFixed(2).replace(".", ",")
+      cartModalAmount.value = getCartModalValue().toFixed(2).replace(".", ",")
    }
 })
 
-function getValue() {
+function getCartModalValue() {
    let rawValue = cartModalAmount.value.replace(",", ".")
    let parsedValue = parseFloat(rawValue)
    return isNaN(parsedValue) ? 0 : parsedValue
 }
 
-function updateValue(value) {
+function updateCartModalValue(value) {
    cartModalAmount.value = value.toFixed(2).replace(".", ",")
 }
 
@@ -373,7 +495,6 @@ function mockTableGenerator(results){
 function getTableData(){
    return [
       {
-         // id:1,
          diametr:'Труба 50х50',
          thickness:'3',
          steelGrade:'ст.0-20',
@@ -385,7 +506,6 @@ function getTableData(){
          city:'Екатеринбург',
       },
       {
-         // id:2,
          diametr:'Труба 50х50',
          thickness:'3',
          steelGrade:'ст.0-20',
@@ -397,7 +517,6 @@ function getTableData(){
          city:'Екатеринбург',
       },
       {
-         // id:3,
          diametr:'Труба 50х50',
          thickness:'3',
          steelGrade:'ст.0-20',
@@ -451,8 +570,8 @@ function tableUpdate(){
             if (th.textContent.trim() === "Металлобаза") {
                warehouseColumnIndex = index
             }
-         });
-      });
+         })
+      })
       if(infoColumnIndex !== -1){
          tbody.querySelectorAll('tr').forEach(tr=>{
             const tdList = tr.querySelectorAll('td')
@@ -546,7 +665,7 @@ function tableUpdate(){
          newTd.appendChild(moreContainer)
 
          tr.appendChild(newTd)
-      });
+      })
 
       thead.querySelector("tr").appendChild(document.createElement("th"))
 
@@ -555,43 +674,3 @@ function tableUpdate(){
    
    })
 }
-
-document.querySelectorAll('.info-icon').forEach(icon => {
-   const extraInfo = icon.nextElementSibling;
-
-   if (extraInfo && extraInfo.classList.contains('extra-info')) {
-      icon.addEventListener('mouseover', () => {
-         extraInfo.style.display = 'block';
-      });
-
-      icon.addEventListener('mouseout', () => {
-         extraInfo.style.display = 'none';
-      });
-   }
-});
-document.querySelectorAll('.more-container').forEach(more => {
-   const extraInfo = more.children[1]
-   if (extraInfo && extraInfo.classList.contains('more-menu')) {
-      more.addEventListener('click', (event) => {
-         event.stopPropagation()
-         document.querySelectorAll('.more-menu').forEach(menu => {
-            if (menu !== extraInfo) menu.style.display = 'none'
-            menu.closest('.more-container').style.background = ''
-         });
-         if (extraInfo.style.display === 'block') {
-            extraInfo.style.display = 'none'
-            more.style.background = ''
-         } else {
-            extraInfo.style.display = 'block'
-            more.style.background = '#E3E3E3'
-         }
-      });
-      
-   }
-});
-document.addEventListener('click', () => {
-   document.querySelectorAll('.more-menu').forEach(menu => {
-      menu.style.display = 'none'
-      menu.closest('.more-container').style.background = ''
-   });
-});

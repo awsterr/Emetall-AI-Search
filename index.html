@@ -4,21 +4,10 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="css/styles.css">
-   <!-- <link rel="stylesheet" href="css/autosearch.css"> -->
    <title>Document</title>
 </head>
 <body>
-   <div class="backdrop hidden" id="dragiver-backdrop"></div>
-   <!-- <div class="header-promo">
-      <p class="header-promo__text">Первые 10 поисков беплатно!</p>
-      <div class="subscribe-btn">
-         <span class="subscribe-btn__text">
-            Купить подписку 1 400 ₽/месяц
-         </span>
-         <span class="subscribe-btn__sale">–30%</span>
-      </div>
-   </div> -->
-   
+   <div class="backdrop hidden" id="dragover-backdrop"></div>
    <main>
       <section class="autosearch">
          <div class="autosearch__container">
@@ -42,7 +31,7 @@
                      accept=".xlsx,.xls,.txt,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" 
                   />
                   <label for="docpicker" class="autosearch-form__custom-input">
-                     <img src="img/file-input.svg">
+                     <span class="autosearch-form__custom-input-icon"></span>
                      Загрузить файл с заявкой
                   </label>
                   <div class="autosearch-form__symbol-counter gray2 fs_12"><span id="symbol-counter">0</span>/20000</div>
@@ -52,7 +41,44 @@
                      Перетащите файл c заявкой в формате Word, Excel, Txt, <br> чтобы мы могли его обработать.
                      <div id="close-btn" class="autosearch-dragover__close">Отмена</div>
                   </div>
-                  <img src="img/logo-pro.png" inert class="autosearch-form__logo">
+                  <div class="form-results">
+                     <div class="form-results__body">
+                        <div class="form-results__file">
+                           <div class="form-results__logo"></div>
+                           <div class="form-results__text">
+                              <div class="form-results__title fw_600">
+                                 <span>Ваша заявка</span>
+                                 <span class="form-results__status">
+                                    <img src="img/ai-file-success.svg">
+                                    Готово
+                                 </span>
+                              </div>
+                              <div class="form-results__subtitle">
+                                 <span>Труба профильная 50х50 ...</span>
+                                 <a href="#">Показать</a>
+                              </div>
+                           </div>
+                           <div class="form-results__close-file"></div>
+                        </div>
+                        <div class="form-results__container">
+                           <h3 class="fs_21 fw_600">Распознано 4 позиции</h3>
+                           <div class="form-results__wrapper">
+                              <a href="" class="secondary-btn btn_38">Перейти к результатам</a>
+                              <a href="" class="secondary-btn btn_38">
+                                 <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.66885 0.181794C3.9199 0.424186 3.9199 0.81719 3.66885 1.05958L2.19485 2.48276H10.0714C12.7934 2.48276 15 4.61326 15 7.24138C15 9.86946 12.7934 12 10.0714 12H4.07143C3.71639 12 3.42858 11.7221 3.42858 11.3793C3.42858 11.0365 3.71639 10.7586 4.07143 10.7586H10.0714C12.0833 10.7586 13.7143 9.18389 13.7143 7.24138C13.7143 5.29886 12.0833 3.72414 10.0714 3.72414H2.19485L3.66885 5.14731C3.9199 5.3897 3.9199 5.78268 3.66885 6.02507C3.4178 6.26748 3.01076 6.26748 2.75971 6.02507L0.188286 3.54234C-0.0627621 3.29995 -0.0627621 2.90694 0.188286 2.66455L2.75971 0.181794C3.01076 -0.0605979 3.4178 -0.0605979 3.66885 0.181794Z" fill="currentColor"/>
+                                 </svg>
+                                 Новый поиск
+                              </a>
+                              <p>Все ваши поиски сохраняются в личном кабинете в разделе <a href="#">Смарт-поиски</a> </p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="progress__container blue" id="progress-container">
+                        <span id="progress-status">Начинаем загрузку...</span>
+                        <div class="progress-bg"><div class="progress-line" id="progress"></div></div>
+                     </div>
+                  </div>
                </form>
                <div class="additional-info">
                   <div class="btns-wrapper">
@@ -68,16 +94,12 @@
                      </div>
                   </div>
                </div>
-               <div class="progress__container hidden blue" id="progress-container">
-                  <span id="progress-status">Начинаем загрузку...</span>
-                  <div class="progress-bg"><div class="progress-line" id="progress"></div></div>
-               </div>
             </div>
          </div>
       </section>
       <section class="search-results">
          <div class="search-results__header">
-            <h2 class="search-results__title fs_28 fw_600"></h2>
+            <h2 class="search-results__title fs_28 fw_600">Результаты поиска</h2>
             <p class="search-results__subtitle">Сначала из <button type="button" class="blue city-modal">Москвы</button></p>
             <label class="toggle" for="city-checkbox">
                <input class="search-results__checkbox" type="checkbox" id="city-checkbox">
@@ -88,6 +110,27 @@
          </div>
          <ul class="search-results__list" id="search-results__list">
          </ul>
+      </section>
+      <section class="subscribe-promo  fw_600">
+         <h2 class="subscribe-promo__title fs_32">Почему стоит попробовать подписку?</h2>
+         <div class="subscribe-promo__item">
+            <img src="img/ai-search-1.svg" class="subscribe-promo__icon">
+            <p class="subscribe-promo__text">
+               Расширенная база поставщиков с собственным наличием без посредников
+            </p>
+         </div>
+         <div class="subscribe-promo__item">
+            <img src="img/ai-search-2.svg" class="subscribe-promo__icon">
+            <p class="subscribe-promo__text">
+               Автоматический поиск и разбор многопозиционных заявок
+            </p>
+         </div>
+         <div class="subscribe-promo__item">
+            <img src="img/ai-search-3.svg" class="subscribe-promo__icon">
+            <p class="subscribe-promo__text">
+               Регулярное поддержание актуальности информации с помощью нейросети
+            </p>
+         </div>
       </section>
    </main>
    <div class="modal-wrapper hidden" id="modal-card-window">
@@ -120,7 +163,6 @@
                   </div>
                </div>
             </div>
-            
          </div>
          <div class="cart-modal__footer">
             <a href="#" class="btn btn_lightblue" id="cart-modal__return">Продолжить покупки</a>
