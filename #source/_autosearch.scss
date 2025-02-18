@@ -1,5 +1,4 @@
-$black: #191B1D;
-$raspberry: #DD0858;
+// $raspberry: #DD0858;
 
 a {
    text-decoration: none;
@@ -32,6 +31,7 @@ main {
       justify-content: center;
       align-items: center;
       color: $blue;
+      background: inherit;
 
       &:hover {
          background: $blue;
@@ -47,6 +47,7 @@ main {
          padding-top: 24px;
          padding-bottom: 40px;
          max-width: 1456px;
+         width: 90%;
          margin: 0 auto;
       }
 
@@ -241,7 +242,7 @@ main {
                      }
 
                      .form-results__subtitle {
-                        color: $gray2;
+                        color: $gray;
                         padding-top: 4px;
                         width: max-content;
 
@@ -343,7 +344,7 @@ main {
                      p {
                         font-size: 14px;
                         max-width: 332px;
-                        color: $gray2;
+                        color: $gray;
 
                         a:visited {
                            color: $blue;
@@ -355,8 +356,8 @@ main {
                         padding: 20px;
 
                         &:nth-child(2) {
-                           border-color: $gray2;
-                           color: $gray2;
+                           border-color: $gray;
+                           color: $gray;
 
                            svg {
                               position: relative;
@@ -411,8 +412,9 @@ main {
                &__link-wrapper {
                   display: flex;
                   gap: 16px;
+                  align-items: center;
 
-                  img {
+                  svg {
                      cursor: pointer;
                   }
                }
@@ -518,7 +520,7 @@ main {
                align-items: center;
                width: 48px;
                background: #E4E4E4;
-               color: $gray2;
+               color: $gray;
                border-top-left-radius: 12px;
                border-bottom-left-radius: 12px;
             }
@@ -552,7 +554,7 @@ main {
 
                &__title {
                   font-size: 11px;
-                  color: $gray2;
+                  color: $gray;
                }
 
                &__body {
@@ -665,7 +667,7 @@ main {
                align-items: center;
                width: 48px;
                background: #E4E4E4;
-               color: $gray2;
+               color: $gray;
                border-top-right-radius: 12px;
                border-bottom-right-radius: 12px;
                cursor: pointer;
@@ -813,7 +815,7 @@ main {
                         border-radius: 4px;
                         transition: background .3s ease;
 
-                        img {
+                        svg {
                            height: 100%;
                            width: 100%;
                            object-fit: contain;
@@ -856,12 +858,12 @@ main {
                               &.warning {
                                  color: $raspberry;
 
-                                 :visited {
+                                 &:visited {
                                     color: $raspberry;
                                  }
                               }
 
-                              :visited {
+                              &:visited {
                                  color: $text-color;
                               }
                            }
@@ -962,6 +964,7 @@ main {
    .subscribe-promo {
       border-radius: 12px;
       max-width: 1456px;
+      width: 90%;
       margin: 32px auto 122px;
       padding: 48px 133px 55px 60px;
       display: flex;
@@ -1005,6 +1008,8 @@ main {
       position: relative;
 
       .cart-modal__close {
+         box-sizing: content-box;
+         display: block;
          position: absolute;
          padding: 10px;
          top: 14px;

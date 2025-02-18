@@ -253,7 +253,9 @@ function findResults(results){
                         </div>
                      </div>
                      <button class="result-item__close" id="close_${position.id}">
-                        <img src="img/search-close.svg">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M0.254006 0.254021C-0.0846687 0.592719 -0.0846687 1.14185 0.254006 1.48055L5.77354 7.00013L0.254271 12.5194C-0.0844041 12.8581 -0.0844041 13.4073 0.254271 13.746C0.592946 14.0847 1.14209 14.0847 1.48076 13.746L7.00003 8.22665L12.5192 13.7458C12.8579 14.0845 13.407 14.0845 13.7457 13.7458C14.0844 13.4072 14.0844 12.858 13.7457 12.5193L8.22658 7.00012L13.746 1.48068C14.0847 1.14199 14.0847 0.592848 13.746 0.254153C13.4073 -0.0845447 12.8581 -0.0845447 12.5195 0.254153L7.00009 5.7736L1.48055 0.254021C1.14182 -0.0846737 0.592734 -0.0846737 0.254006 0.254021Z" fill="#6C757D"/>
+                        </svg>
                      </button>
                   </div>
                   <div class="result-item__body" id="table-container_${position.id}">
@@ -411,7 +413,6 @@ cartBackdrop.addEventListener('click',closeCartModal)
 const returnBtn = document.getElementById('cart-modal__return')
 returnBtn.addEventListener('click',closeCartModal)
 
-
 const cartModalAmount = document.getElementById('cart-modal__amount-value')
 const cartModalPlus = document.getElementById('cart-modal__plus')
 const cartModalMinus = document.getElementById('cart-modal__minus')
@@ -494,6 +495,72 @@ function mockTableGenerator(results){
 }
 function getTableData(){
    return [
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
       {
          diametr:'Труба 50х50',
          thickness:'3',
@@ -636,10 +703,12 @@ function tableUpdate(){
          const moreContainer = document.createElement("div")
          moreContainer.classList.add("more-container")
 
-
-         const moreImage = document.createElement("img")
-         moreImage.src = "img/more.svg"
-         moreContainer.appendChild(moreImage)
+         moreContainer.innerHTML+= `<svg width="18" height="4" viewBox="0 0 18 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M4 2C4 3.10457 3.10457 4 2 4C0.895431 4 0 3.10457 0 2C0 0.895431 0.895431 0 2 0C3.10457 0 4 0.895431 4 2Z" fill="#212529"/>
+                                       <path d="M11 2C11 3.10457 10.1046 4 9 4C7.89543 4 7 3.10457 7 2C7 0.895431 7.89543 0 9 0C10.1046 0 11 0.895431 11 2Z" fill="#212529"/>
+                                       <path d="M16 4C17.1046 4 18 3.10457 18 2C18 0.895431 17.1046 0 16 0C14.8954 0 14 0.895431 14 2C14 3.10457 14.8954 4 16 4Z" fill="#212529"/>
+                                    </svg>
+`
 
          const moreMenu = document.createElement("div")
          moreMenu.classList.add('more-menu')
@@ -674,3 +743,35 @@ function tableUpdate(){
    
    })
 }
+// findResults([
+//    {
+//       id:1,
+//       name:'Труба профильная',
+//       size:'50x50',
+//       thickness:'3',
+//       steelGrade:'ст.0-20',
+//       standard:'13663-86',
+//       amount:'30',
+//       unit:'Кг',
+//      },
+//      {
+//       id:2,
+//       name:'Труба профильная',
+//       size:'50x50',
+//       thickness:'2',
+//       steelGrade:'ст.0-20',
+//       standard:'13663-86',
+//       amount:'100',
+//       unit:'Кг',
+//      },
+//      {
+//       id:3,
+//       name:'Труба профильная',
+//       size:'50x50',
+//       thickness:'3',
+//       steelGrade:'ст.0-20',
+//       standard:'13663-86',
+//       amount:'30',
+//       unit:'Кг',
+//      }
+// ])
