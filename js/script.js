@@ -30,62 +30,16 @@ const changeProgress = (progress) => {
   circleProgress.style.strokeDashoffset = offset
 }
 // Моковый прогресс
-// function handleFileRead(){
-//    formResults.style.display = 'flex'
-//    setTimeout(() => changeProgress(9), 1000)
-//    setTimeout(() => changeProgress(24), 2000)
-//    setTimeout(() => changeProgress(34), 3000)
-//    setTimeout(() => changeProgress(38), 3866)
-//    setTimeout(() => changeProgress(42), 4000)
-//    setTimeout(() => changeProgress(45), 4500)
-//    setTimeout(() => changeProgress(85), 5600)
-//    setTimeout(() => changeProgress(98), 6266)
-//    setTimeout(() => {
-//       changeProgress(100)
-//       formResults.classList.add('finished')
-//       textarea.dispatchEvent(new Event('blur'))
-//       findResults([
-//          {
-//             id:1,
-//             name:'Труба профильная',
-//             size:'50x50',
-//             thickness:'3',
-//             steelGrade:'ст.0-20',
-//             standard:'13663-86',
-//             amount:'30',
-//             unit:'Кг',
-//            },
-//            {
-//             id:2,
-//             name:'Труба профильная',
-//             size:'50x50',
-//             thickness:'2',
-//             steelGrade:'ст.0-20',
-//             standard:'13663-86',
-//             amount:'100',
-//             unit:'Кг',
-//            },
-//            {
-//             id:3,
-//             name:'Труба профильная',
-//             size:'50x50',
-//             thickness:'3',
-//             steelGrade:'ст.0-20',
-//             standard:'13663-86',
-//             amount:'30',
-//             unit:'Кг',
-//            }
-//       ])
-//    }, 8000)
-// }
 function handleFileRead(){
    changeProgress(0)
-   document.querySelector('#autosearch-form').style.minHeight = '0'
-   formResults.classList.add('result-flex')
+
+
+   document.querySelector('.autosearch__back').classList.add('visible')
+   document.querySelector('#autosearch-form').classList.add('pending')
+   document.querySelector('.autosearch-trial').classList.add('pending')
+
    document.querySelector('.autosearch').classList.add('search-mobile')
-   document.querySelector('.form-results__status').classList.add('blue')
-   document.querySelector('.mobile-loading').style.display = 'flex'
-   document.querySelector('.search-results').style.display = 'block'
+   document.querySelector('.search-results').classList.add('pending')
    setTimeout(() => changeProgress(9), 1000)
    setTimeout(() => changeProgress(24), 2000)
    setTimeout(() => changeProgress(34), 3000)
@@ -97,11 +51,11 @@ function handleFileRead(){
    setTimeout(() => {
       changeProgress(100)
       formResults.classList.add('finished')
+      document.querySelector('.search-results').classList.add('finished')
+
       document.querySelector('.autosearch').classList.add('finished')
-      document.querySelector('.form-results__status').classList.remove('blue')
       document.querySelector('.form-results__status span').innerText = 'Готово'
       textarea.dispatchEvent(new Event('blur'))
-      document.querySelector('.mobile-loading').style.display = 'none'
       findResults([
          {
             id:1,
@@ -196,16 +150,15 @@ function handleFileRead(){
       ])
    }, 8000)
 }
-// handleFileRead()
 document.querySelector('.autosearch__back .profile__back').addEventListener('click',(e)=>{
    e.preventDefault()
-   document.querySelector('.autosearch').classList.remove('search-mobile')
-   document.querySelector('.autosearch').classList.remove('finished')
+   document.querySelector('.autosearch').classList.remove('search-mobile','finished')
+   document.querySelector('#autosearch-form').classList.remove('pending')
+   document.querySelector('.autosearch-trial').classList.remove('pending')
+   document.querySelector('.search-results').classList.remove('pending','finished')
+   document.querySelector('.autosearch__back').classList.remove('visible')
    formResults.classList.remove('finished')
-   formResults.classList.remove('result-flex')
    document.querySelector('#search-results__list').innerHTML = ''
-   document.querySelector('#autosearch-form').style.minHeight = '390px'
-   document.querySelector('.mobile-loading').style.display = 'none'
 })
 
 const textarea = document.getElementById('autosearch-textarea')
@@ -277,9 +230,6 @@ const docpicker = document.getElementById('docpicker')
 docpicker.addEventListener('change',(event)=>{
    handleFileRead()
    const files = event.target.files
-   // console.dir()
-   // const fileIcon = document.querySelector('.form-results__logo')
-   
    showFileInfo(files[0])
 })
 
@@ -300,18 +250,15 @@ function showFileInfo(file){
    switch (file.type){
          case 'application/msword':
          case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-            logo.classList.remove('exl')
-            logo.classList.remove('txt')
+            logo.classList.remove('exl','txt')
             logo.classList.add('word')
             break
          case 'text/plain':
-            logo.classList.remove('exl')
-            logo.classList.remove('word')
+            logo.classList.remove('exl','word')
             logo.classList.add('txt')
             break
          default:
-            logo.classList.remove('txt')
-            logo.classList.remove('word')
+            logo.classList.remove('txt','word')
             logo.classList.add('exl')
    }
 
@@ -342,16 +289,10 @@ function formatFileSize(size) {
 function findResults(results){
    // Запрос на сервер, получаем константы
    
-   const searchConteiner = document.querySelector('.search-results')
-   searchConteiner.style.display = 'none'
    
-   const subscribePromo = document.querySelector('.subscribe-promo')
-   subscribePromo.style.display = 'none'
+   document.querySelector('.subscribe-promo').classList.add('finished')
 
-   
-   
-   
-   searchConteiner.style.display = 'block'
+   document.querySelector('.additional-info.desktop').classList.add('finished')
    
    const resultList = document.getElementById('search-results__list')
    resultList.innerHTML = ''
@@ -554,25 +495,25 @@ findBtn.addEventListener('click',(event)=>{
 
    document.querySelector('.form-results__title span').innerHTML = 'Ваша заявка'
 
-   document.querySelector('.form-results__subtitle a').style.display='inline'
 
    document.querySelector('.form-results__subtitle span').innerHTML = textarea.value.substring(0, 25) + "..."
 
    const number = 3
    document.querySelector('.form-results__container h3').innerHTML = `Распознано ${number} позиции`
 
+
+   document.querySelector('.form-results__logo').classList.remove('txt','exl','word')
+
    handleFileRead()
 })
 
 
 function openCartModal(){
-   const modal = document.getElementById('modal-card-window')
-   modal.classList.remove('hidden')
+   document.getElementById('modal-card-window').classList.remove('hidden')
    cartBackdrop.classList.remove('hidden')
 }
 function closeCartModal(){
-   const modal = document.getElementById('modal-card-window')
-   modal.classList.add('hidden')
+   document.getElementById('modal-card-window').classList.add('hidden')
    cartBackdrop.classList.add('hidden')
 }
 const closeModalBtn = document.getElementById('cart-modal__close-btn')
@@ -671,7 +612,51 @@ function getTableData(){
          thickness:'3',
          steelGrade:'ст.0-20',
          standard:'ГОСТ 13663-86',
-         length:'6',
+         length:'1',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'2',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'3',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'4',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'5',
          amount:'36.58 т',
          price:'53 400 руб/т',
          warehouse:'Металлторг',
@@ -687,7 +672,95 @@ function getTableData(){
          price:'53 400 руб/т',
          warehouse:'Металлторг',
          city:'Екатеринбург',
-      }
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'7',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'8',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'9',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'10',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'11',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'12',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'13',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'14',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
    ]
 }
 function getTableHeaders(){
@@ -716,7 +789,7 @@ function tableUpdate(){
 
       thead?.querySelectorAll("tr").forEach(tr=>tr.classList.add('result-table__thead-tr'))
       tbody?.querySelectorAll("tr").forEach(tr=>tr.classList.add('result-table__tbody-tr'))
-      wrapTableContentWithSpans(table);
+      wrapTableContentWithSpans(table)
 
       let infoColumnIndex = -1
       let warehouseColumnIndex = -1
@@ -861,7 +934,18 @@ function tableUpdate(){
       `
       mobileDiv.classList.add('mobile','mobile-result-header')
       table.closest('.result-item__body').insertBefore(mobileDiv,table)
-
+      const pagination = document.createElement('div')
+      pagination.classList.add('pagination','mobile')
+      pagination.innerHTML = `<span class="pagination-info">Показаны 10 результатов из 27</span>
+                              <a class="show-more secondary-btn btn_38">Показать еще</a>
+                              <div>
+                                 <a class="prev-page">&lt;</a>
+                                 <div class="page-numbers"></div>
+                                 <a class="next-page">&gt;</a>
+                              </div>
+                              `
+      table.closest('.result-item__body').appendChild(pagination)
+      
    })
    // Редактировать позицию
    const resultSettings = document.querySelectorAll('.result-item__settings')
@@ -904,15 +988,19 @@ function tableUpdate(){
    // Перейти на предложения по позиции
    document.querySelectorAll('.result-item__more').forEach(btn=>{
       btn.addEventListener('click',()=>{
+         document.querySelector('.search-results__list').classList.add('mobile-results')
+         document.querySelector('.autosearch-form').classList.add('mobile-results')
          btn.closest('.result-item').querySelector('.result-item__body').style.display = 'block'
-
-
+         document.querySelector('.autosearch__back').classList.remove('visible')
+         initPagination(btn.closest('.result-item').querySelector('table'))
+         btn.closest('.result-item__header').style.display = 'none'
          // Костыль для скрытия всех элементов списка, при открытии "модалки"
          document.querySelectorAll('.result-item').forEach(li=>{
             if(li !== btn.closest('.result-item')){
                li.style.display='none'
             }
          })
+
       })
    })
 
@@ -931,71 +1019,45 @@ function tableUpdate(){
       document.querySelectorAll('.result-item').forEach(item=>{
          item.style.display='block'
       })
+      document.querySelector('.autosearch__back').classList.add('visible')
+      document.querySelector('.search-results__list').classList.remove('mobile-results')
+      document.querySelector('.autosearch-form').classList.remove('mobile-results')
+      document.querySelectorAll('.result-item__header').forEach(header=>{
+         header.style.display = 'flex'
+      })
+
+
+
    })
  })
 }
-// findResults([
-//    {
-//       id:1,
-//       name:'Труба профильная',
-//       size:'50x50',
-//       thickness:'3',
-//       steelGrade:'ст.0-20',
-//       standard:'13663-86',
-//       amount:'30',
-//       unit:'Кг',
-//      },
-//      {
-//       id:2,
-//       name:'Труба профильная',
-//       size:'50x50',
-//       thickness:'2',
-//       steelGrade:'ст.0-20',
-//       standard:'13663-86',
-//       amount:'100',
-//       unit:'Кг',
-//      },
-//      {
-//       id:3,
-//       name:'Труба профильная',
-//       size:'50x50',
-//       thickness:'3',
-//       steelGrade:'ст.0-20',
-//       standard:'13663-86',
-//       amount:'30',
-//       unit:'Кг',
-//      }
-// ])
-
-
-// handleFileRead()
 
 
 
  function wrapTableContentWithSpans(table) {
-     const headers = table.querySelectorAll('thead th');
+     const headers = table.querySelectorAll('thead th')
      headers.forEach(th => {
-       const originalText = th.textContent.trim();
+       const originalText = th.textContent.trim()
  
-       th.innerHTML = `<span class="thvalue">${originalText}</span>`;
-     });
+       th.innerHTML = `<span class="thvalue">${originalText}</span>`
+     })
  
-     const rows = table.querySelectorAll('tbody tr');
+     const rows = table.querySelectorAll('tbody tr')
      rows.forEach(row => {
-       const cells = row.querySelectorAll('td');
+       const cells = row.querySelectorAll('td')
        cells.forEach((cell, index) => {
-         const header = headers[index].textContent.trim();
+         const header = headers[index].textContent.trim()
  
-         const originalContent = cell.innerHTML;
+         const originalContent = cell.innerHTML
  
          const newContent = `
            <span class="mobile">${header}</span>
            <span class="tdvalue">${originalContent}</span>
-         `;
+         `
  
-         cell.innerHTML = newContent;
-       });
-     });
+         cell.innerHTML = newContent
+       })
+     })
  }
 
 
@@ -1011,3 +1073,116 @@ viewOrder.querySelector('.view-order__container svg').addEventListener('click',(
    viewOrder.style.display = 'none'
 })
 
+
+
+
+function initPagination(table) {
+   const container = table.closest('.result-item__body')
+   const cardContainer = container.querySelector('.result-table__tbody')
+   const cards = Array.from(cardContainer.querySelectorAll('.result-table__tbody-tr'))
+   const paginationInfo = container.querySelector('.pagination-info')
+   const showMoreBtn = container.querySelector('.show-more')
+   const prevPageBtn = container.querySelector('.prev-page')
+   const nextPageBtn = container.querySelector('.next-page')
+   const pageNumbersContainer = container.querySelector('.page-numbers')
+
+
+   let currentPage = 0
+    const cardsPerPage = 4
+    let visibleCardsCount = cardsPerPage
+    const totalPages = Math.ceil(cards.length / cardsPerPage)
+
+    function showCards() {
+        cards.forEach(card => card.style.display = 'none')
+
+        const startIndex = currentPage * cardsPerPage
+        const endIndex = startIndex + visibleCardsCount
+
+        cards.slice(startIndex, endIndex).forEach(card => {
+            card.style.display = 'flex'
+        })
+
+        paginationInfo.textContent = `Показаны ${Math.min(endIndex, cards.length)} результатов из ${cards.length}`
+
+        updatePageNumbers()
+    }
+
+    function updatePageNumbers() {
+      pageNumbersContainer.innerHTML = ''
+  
+      addPageNumber(0)
+  
+      if (currentPage > 2) {
+          const dots = document.createElement("span")
+          dots.textContent = "..."
+          pageNumbersContainer.appendChild(dots)
+      }
+  
+      for (let i = Math.max(1, currentPage - 1); i <= Math.min(totalPages - 2, currentPage + 1); i++) {
+          addPageNumber(i)
+      }
+  
+      if (currentPage < totalPages - 3) {
+          const dots = document.createElement("span")
+          dots.textContent = "..."
+          pageNumbersContainer.appendChild(dots)
+      }
+  
+      if (totalPages > 1) {
+          addPageNumber(totalPages - 1)
+      }
+  }
+
+    function addPageNumber(pageIndex) {
+      const pageNumber = document.createElement('div')
+      pageNumber.textContent = pageIndex + 1
+      pageNumber.classList.add("page-number")
+  
+      if (pageIndex === currentPage) {
+          pageNumber.classList.add('active')
+      }
+  
+      pageNumber.addEventListener('click', (event) => {
+          event.stopPropagation()
+          if (pageIndex !== currentPage) {
+              currentPage = pageIndex
+              visibleCardsCount = cardsPerPage
+              showCards()
+          }
+         paginationInfo.textContent = `Показаны ${cardsPerPage} результатов из ${cards.length}`
+
+      })
+  
+      pageNumbersContainer.appendChild(pageNumber)
+  }
+
+    showCards()
+
+    showMoreBtn.addEventListener('click', () => {
+        visibleCardsCount += cardsPerPage
+        showCards()
+        paginationInfo.textContent = `Показаны ${visibleCardsCount} результатов из ${cards.length}`
+      //   TODO disable when overused
+
+    })
+
+    prevPageBtn.addEventListener('click', () => {
+        if (currentPage > 0) {
+            currentPage--
+            visibleCardsCount = cardsPerPage
+            showCards()
+        }
+        paginationInfo.textContent = `Показаны ${cardsPerPage} результатов из ${cards.length}`
+
+    })
+
+    nextPageBtn.addEventListener('click', () => {
+        if (currentPage < totalPages - 1) {
+            currentPage++
+            visibleCardsCount = cardsPerPage
+            showCards()
+        }
+        paginationInfo.textContent = `Показаны ${cardsPerPage} результатов из ${cards.length}`
+
+    })
+}
