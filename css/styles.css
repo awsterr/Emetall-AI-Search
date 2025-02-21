@@ -3847,10 +3847,11 @@ a {
   border-color: #2764E0;
 }
 
-.additional-info__container {
+.additional-info__container.mobile {
   padding-top: 40px;
   padding-bottom: 60px;
   background: #f2f2f4;
+  display: none;
 }
 
 .additional-info {
@@ -4643,6 +4644,9 @@ a {
   }
   .additional-info .btns-wrapper {
     display: none;
+  }
+  .additional-info__container.mobile {
+    display: block;
   }
   .autosearch__back {
     position: relative;
