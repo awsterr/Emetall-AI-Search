@@ -1180,16 +1180,7 @@ a {
 
          }
 
-         // &__btn-more {
-         //    margin-top: 32px;
-         //    font-size: 15px;
-         //    line-height: 25px;
 
-         //    &.disable {
-         //       pointer-events: none;
-         //       opacity: .2;
-         //    }
-         // }
       }
    }
 }
@@ -1693,7 +1684,6 @@ a {
                }
 
                .form-results {
-                  // height: 80px;
 
                   &.result-flex {
                      display: block;
@@ -1704,7 +1694,6 @@ a {
                   }
 
                   .form-results__body {
-                     // height: 80px;
                      max-width: 100%;
 
                      .form-results__file {
@@ -1859,7 +1848,6 @@ a {
 
             .search-results__list {
                display: flex;
-               // margin-top: 43px;
 
                &.mobile-results {
                   margin-top: 0;

@@ -1,4 +1,4 @@
-// const ROWS_PER_PAGE = 8
+const ROWS_PER_PAGE = 8
 
 
 
@@ -202,7 +202,6 @@ function showDragover(){
    searchDragover.classList.remove('hidden')
    backdrop.classList.remove('hidden')
 }
-// showDragover()
 
 searchBlock.addEventListener('dragenter', (event) => {
    event.preventDefault()
@@ -419,13 +418,6 @@ function findResults(results){
          li.remove()
       })
    
-   
-      // const moreBtn = document.createElement('a')
-      // moreBtn.classList.add('secondary-btn','btn_44','result-item__btn-more')
-      // moreBtn.style.display = 'none'
-      // moreBtn.setAttribute('id',`btn-more_${position.id}`)
-      // li.appendChild(moreBtn)
-   
    })
    mockTableGenerator(results)
    tableUpdate()
@@ -514,7 +506,6 @@ function blurTable(refreshBtn){
    refreshBtn.inert = true
    const showMore = container.querySelector('.result-item__show-more')
    showMore.disabled = true
-   console.dir(showMore)
    // Здесь запрос делать
    setTimeout(() => {
       loadingBlur.remove()
@@ -1178,8 +1169,6 @@ function tableUpdate(){
    // Перейти на предложения по позиции
    document.querySelectorAll('.result-item__more').forEach(btn=>{
       btn.addEventListener('click',()=>{
-         // document.querySelector('.autosearch-form').classList.remove('file-docpicker-mobile')
-         // document.querySelector('.autosearch__body').style.paddingTop = '60px'
          document.querySelector('.search-results__header').style.display = 'none'
          document.querySelector('.search-results__list').classList.add('mobile-results')
          document.querySelector('.autosearch__body').classList.add('more-active')
@@ -1188,7 +1177,6 @@ function tableUpdate(){
          document.querySelector('.autosearch__back').classList.remove('visible')
          initPagination(btn.closest('.result-item').querySelector('table'))
          btn.closest('.result-item__header').style.display = 'none'
-         // Костыль для скрытия всех элементов списка, при открытии "модалки"
          document.querySelectorAll('.result-item').forEach(li=>{
             if(li !== btn.closest('.result-item')){
                li.style.display='none'
@@ -1271,169 +1259,38 @@ viewOrder.querySelector('.view-order__container svg').addEventListener('click',(
 })
 
 
-function initPagination(table) {
-   const container = table.closest('.result-item__body')
-   const cardContainer = container.querySelector('.result-table__tbody')
-   const cards = Array.from(cardContainer.querySelectorAll('.result-table__tbody-tr'))
-   const paginationInfo = container.querySelector('.pagination-info')
-   const showMoreBtn = container.querySelector('.show-more')
-   const prevPageBtn = container.querySelector('.prev-page')
-   const nextPageBtn = container.querySelector('.next-page')
-   const pageNumbersContainer = container.querySelector('.page-numbers')
 
-
-   let currentPage = 0
-    const cardsPerPage = 4
-    let visibleCardsCount = cardsPerPage
-    const totalPages = Math.ceil(cards.length / cardsPerPage)
-
-    function showCards() {
-        cards.forEach(card => card.style.display = 'none')
-
-        const startIndex = currentPage * cardsPerPage
-        const endIndex = startIndex + visibleCardsCount
-
-        cards.slice(startIndex, endIndex).forEach(card => {
-            card.style.display = 'flex'
-        })
-
-        paginationInfo.textContent = `Показаны ${Math.min(endIndex, cards.length)} результатов из ${cards.length}`
-
-        updatePageNumbers()
-    }
-
-    function updatePageNumbers() {
-      pageNumbersContainer.innerHTML = ''
-  
-      addPageNumber(0)
-  
-      if (currentPage > 2) {
-          const dots = document.createElement("span")
-          dots.textContent = "..."
-          pageNumbersContainer.appendChild(dots)
-      }
-  
-      for (let i = Math.max(1, currentPage - 1); i <= Math.min(totalPages - 2, currentPage + 1); i++) {
-          addPageNumber(i)
-      }
-  
-      if (currentPage < totalPages - 3) {
-          const dots = document.createElement("span")
-          dots.textContent = "..."
-          pageNumbersContainer.appendChild(dots)
-      }
-  
-      if (totalPages > 1) {
-          addPageNumber(totalPages - 1)
-      }
-  }
-
-    function addPageNumber(pageIndex) {
-      const pageNumber = document.createElement('div')
-      pageNumber.textContent = pageIndex + 1
-      pageNumber.classList.add("page-number")
-  
-      if (pageIndex === currentPage) {
-          pageNumber.classList.add('active')
-      }
-  
-      pageNumber.addEventListener('click', (event) => {
-          event.stopPropagation()
-          if (pageIndex !== currentPage) {
-              currentPage = pageIndex
-              visibleCardsCount = cardsPerPage
-              showCards()
-          }
-         paginationInfo.textContent = `Показаны ${cardsPerPage} результатов из ${cards.length}`
-
-      })
-  
-      pageNumbersContainer.appendChild(pageNumber)
-  }
-
-    showCards()
-
-    showMoreBtn.addEventListener('click', () => {
-        visibleCardsCount += cardsPerPage
-        showCards()
-        paginationInfo.textContent = `Показаны ${visibleCardsCount} результатов из ${cards.length}`
-      //   TODO disable when overused
-
-    })
-
-    prevPageBtn.addEventListener('click', () => {
-        if (currentPage > 0) {
-            currentPage--
-            visibleCardsCount = cardsPerPage
-            showCards()
-        }
-        paginationInfo.textContent = `Показаны ${cardsPerPage} результатов из ${cards.length}`
-
-    })
-
-    nextPageBtn.addEventListener('click', () => {
-        if (currentPage < totalPages - 1) {
-            currentPage++
-            visibleCardsCount = cardsPerPage
-            showCards()
-        }
-        paginationInfo.textContent = `Показаны ${cardsPerPage} результатов из ${cards.length}`
-
-    })
-}
-// handleFileRead()
-
-
-// function sliceResults(table){
-//    const tableBody = table.querySelector('tbody')
-//    const rows = tableBody.querySelectorAll('tr')
-//    const tableContainer = table.closest('.result-item__body')
-//    const showMoreBtn = document.createElement('div')
-//    showMoreBtn.innerHTML = '<a>Показать еще</a>'
-//    showMoreBtn.addEventListener('click',()=>{
-
-//    })
-   
-//    tableContainer.appendChild(showMoreBtn)
-// }
 
 
 function addShowMoreButton(table) {
-   const tbody = table.querySelector("tbody");
-   const rows = Array.from(tbody.querySelectorAll("tr"));
-   rowsPerClick = 10
-   let visibleRows = rowsPerClick;
+   const tbody = table.querySelector("tbody")
+   const rows = Array.from(tbody.querySelectorAll("tr"))
+   rowsPerClick = ROWS_PER_PAGE
+   let visibleRows = rowsPerClick
 
-   // Создаем кнопку
-   const showMoreBtn = document.createElement("button");
-   showMoreBtn.textContent = "Показать еще";
-   // showMoreBtn.style.display = "none"; // Пока скрываем
+   const showMoreBtn = document.createElement("button")
+   showMoreBtn.textContent = "Показать еще"
    showMoreBtn.classList.add('secondary-btn','btn_38','result-item__show-more')
-   table.parentElement.appendChild(showMoreBtn);
+   table.parentElement.appendChild(showMoreBtn)
 
-   // Функция отображения строк
    function updateRows() {
        rows.forEach((row, index) => {
-           row.style.display = index < visibleRows ? "contents" : "none";
-       });
+           row.style.display = index < visibleRows ? "contents" : "none"
+       })
 
-       // Показываем кнопку, если есть скрытые строки
-      visibleRows < rows.length ? showMoreBtn.classList.add("visible") : showMoreBtn.classList.remove("visible");
+      visibleRows < rows.length ? showMoreBtn.classList.add("visible") : showMoreBtn.classList.remove("visible")
    }
 
-   // Обработчик клика
    showMoreBtn.addEventListener("click", () => {
-       visibleRows += rowsPerClick;
-       updateRows();
-   });
+       visibleRows += rowsPerClick
+       updateRows()
+   })
 
-   // Инициализация
-   updateRows();
+   updateRows()
 }
 
 
 const newSearchModal = document.querySelector('.new-application__modal')
-// console.dir(newSearchModal)
 document.querySelector('.newsearch-btn').addEventListener('click',(event)=>{
    event.preventDefault()
    newSearchModal.style.display = 'flex'
@@ -1456,3 +1313,116 @@ newSearchModal.querySelector('.new-application__container .new').addEventListene
    document.querySelector('.autosearch__back .profile__back').dispatchEvent(new Event('click'))
    newSearchModal.style.display = 'none'
 })
+
+
+function initPagination(table) {
+   const container = table.closest('.result-item__body')
+   const cardContainer = container.querySelector('.result-table__tbody')
+   const cards = Array.from(cardContainer.querySelectorAll('.result-table__tbody-tr'))
+   const paginationInfo = container.querySelector('.pagination-info')
+   const showMoreBtn = container.querySelector('.show-more')
+   const prevPageBtn = container.querySelector('.prev-page')
+   const nextPageBtn = container.querySelector('.next-page')
+   const pageNumbersContainer = container.querySelector('.page-numbers')
+
+   let currentPage = 0
+   const cardsPerPage = ROWS_PER_PAGE
+   let visibleCardsCount = cardsPerPage
+   const totalPages = Math.ceil(cards.length / cardsPerPage)
+
+   function showCards() {
+      cards.forEach(card => card.style.display = 'none')
+
+      const startIndex = currentPage * cardsPerPage
+      let endIndex = startIndex + visibleCardsCount
+
+      if (endIndex > cards.length) {
+         endIndex = cards.length
+      }
+
+      cards.slice(startIndex, endIndex).forEach(card => {
+         card.style.display = 'flex'
+      })
+
+      if (endIndex === cards.length) {
+         showMoreBtn.style.display = 'none'
+      } else {
+         showMoreBtn.style.display = 'block'
+      }
+
+      const displayedCount = endIndex - startIndex
+      paginationInfo.textContent = `Показаны ${displayedCount} из ${cards.length}`
+
+      updatePageNumbers()
+   }
+
+   function updatePageNumbers() {
+      pageNumbersContainer.innerHTML = ''
+
+      addPageNumber(0)
+
+      if (currentPage > 2) {
+         const dots = document.createElement("span")
+         dots.textContent = "..."
+         pageNumbersContainer.appendChild(dots)
+      }
+
+      for (let i = Math.max(1, currentPage - 1); i <= Math.min(totalPages - 2, currentPage + 1); i++) {
+         addPageNumber(i)
+      }
+
+      if (currentPage < totalPages - 3) {
+         const dots = document.createElement("span")
+         dots.textContent = "..."
+         pageNumbersContainer.appendChild(dots)
+      }
+
+      if (totalPages > 1) {
+         addPageNumber(totalPages - 1)
+      }
+   }
+
+   function addPageNumber(pageIndex) {
+      const pageNumber = document.createElement('div')
+      pageNumber.textContent = pageIndex + 1
+      pageNumber.classList.add("page-number")
+
+      if (pageIndex === currentPage) {
+         pageNumber.classList.add('active')
+      }
+
+      pageNumber.addEventListener('click', (event) => {
+         event.stopPropagation()
+         if (pageIndex !== currentPage) {
+            currentPage = pageIndex
+            visibleCardsCount = cardsPerPage 
+            showCards()
+         }
+      })
+
+      pageNumbersContainer.appendChild(pageNumber)
+   }
+
+   showCards()
+
+   showMoreBtn.addEventListener('click', () => {
+      visibleCardsCount += cardsPerPage 
+      showCards()
+   })
+
+   prevPageBtn.addEventListener('click', () => {
+      if (currentPage > 0) {
+         currentPage--
+         visibleCardsCount = cardsPerPage 
+         showCards()
+      }
+   })
+
+   nextPageBtn.addEventListener('click', () => {
+      if (currentPage < totalPages - 1) {
+         currentPage++
+         visibleCardsCount = cardsPerPage 
+         showCards()
+      }
+   })
+}
