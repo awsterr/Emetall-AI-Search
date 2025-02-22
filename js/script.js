@@ -1,4 +1,5 @@
-const ROWS_PER_PAGE = 8
+// const ROWS_PER_PAGE = 8
+
 
 
 
@@ -159,6 +160,8 @@ document.querySelector('.autosearch__back .profile__back').addEventListener('cli
    document.querySelector('.autosearch__back').classList.remove('visible')
    formResults.classList.remove('finished')
    document.querySelector('#search-results__list').innerHTML = ''
+   document.querySelector('.autosearch-form__custom-input .docpicker__text').innerText = 'Загрузить файл с заявкой'
+
 })
 
 const textarea = document.getElementById('autosearch-textarea')
@@ -199,6 +202,7 @@ function showDragover(){
    searchDragover.classList.remove('hidden')
    backdrop.classList.remove('hidden')
 }
+// showDragover()
 
 searchBlock.addEventListener('dragenter', (event) => {
    event.preventDefault()
@@ -216,6 +220,7 @@ searchBlock.addEventListener('dragleave', () => {
 })
 searchBlock.addEventListener('drop', (event) => {
    event.preventDefault()
+   document.querySelector('.autosearch__back .profile__back').dispatchEvent(new Event('click'))
    const files = event.dataTransfer.files
    hideDragover()
    dragCounter = 0
@@ -226,10 +231,14 @@ searchBlock.addEventListener('drop', (event) => {
 })
 closeDragover.addEventListener('click',hideDragover)
 
-const docpicker = document.getElementById('docpicker')
-docpicker.addEventListener('change',(event)=>{
-   handleFileRead()
+document.getElementById('docpicker').addEventListener('change',(event)=>{
    const files = event.target.files
+   if (files.length === 0) return
+
+   document.querySelector('.autosearch__back .profile__back').dispatchEvent(new Event('click'))
+   document.querySelector('.autosearch-form').classList.add('file-docpicker-mobile')
+   document.querySelector('.autosearch-form__custom-input .docpicker__text').innerText = 'Загрузить другой файл'
+   handleFileRead()
    showFileInfo(files[0])
 })
 
@@ -294,6 +303,29 @@ function findResults(results){
 
    document.querySelector('.additional-info.desktop').classList.add('finished')
    
+   let positionWordFormat = 'позиций'
+   switch (results.length % 10){
+      case 1:
+         if(results.length % 100===11) break
+         positionWordFormat = "позиция"
+         break
+      case 2:
+         if(results.length % 100===12) break
+
+      case 3:
+         if(results.length % 100===13) break
+
+      case 4:
+         if(results.length % 100===14) break
+         positionWordFormat = "позиции"
+         break
+      default:
+         break
+   }
+
+   document.querySelector('.form-results__container > h3').innerText = `Распознано ${results.length} ${positionWordFormat}`
+   document.querySelector('.search-results__mobile-header > h3').innerText = `Распознано ${results.length} ${positionWordFormat}`
+
    const resultList = document.getElementById('search-results__list')
    resultList.innerHTML = ''
    results.map((position,index)=>{
@@ -379,7 +411,7 @@ function findResults(results){
       const refresh = document.getElementById('refresh_'+position.id)
       refresh.addEventListener('click',(event)=>{
          event.preventDefault()
-         blurTable(position.id)
+         blurTable(refresh)
       })
       const close = document.getElementById('close_'+position.id)
       close.addEventListener('click',(event)=>{
@@ -388,11 +420,11 @@ function findResults(results){
       })
    
    
-      const moreBtn = document.createElement('a')
-      moreBtn.classList.add('secondary-btn','btn_44','result-item__btn-more')
-      moreBtn.style.display = 'none'
-      moreBtn.setAttribute('id',`btn-more_${position.id}`)
-      li.appendChild(moreBtn)
+      // const moreBtn = document.createElement('a')
+      // moreBtn.classList.add('secondary-btn','btn_44','result-item__btn-more')
+      // moreBtn.style.display = 'none'
+      // moreBtn.setAttribute('id',`btn-more_${position.id}`)
+      // li.appendChild(moreBtn)
    
    })
    mockTableGenerator(results)
@@ -467,8 +499,10 @@ function findResults(results){
    
 }
 
-function blurTable(id){
-   const table = document.getElementById('table_'+id)
+function blurTable(refreshBtn){
+   const container = refreshBtn.closest('.search-results__item.result-item')
+   const table = container.querySelector('.table.table-striped')
+   
    if (!table) return
    const loadingBlur = document.createElement('div')
    loadingBlur.classList.add('loading-container')
@@ -476,16 +510,16 @@ function blurTable(id){
    circle.classList.add('loading-circle')
    table.appendChild(loadingBlur)
    loadingBlur.appendChild(circle)
-   const refreshBtns = document.querySelectorAll('.result-item__btn-more')
-   refreshBtns.forEach((btn)=>{
-      btn.classList.add('disable')
-   })
+
+   refreshBtn.inert = true
+   const showMore = container.querySelector('.result-item__show-more')
+   showMore.disabled = true
+   console.dir(showMore)
    // Здесь запрос делать
    setTimeout(() => {
       loadingBlur.remove()
-      refreshBtns.forEach((btn)=>{
-         btn.classList.remove('disable')
-      })
+      refreshBtn.inert = false
+      showMore.disabled = false
 
    }, 3000)
 }
@@ -501,7 +535,7 @@ findBtn.addEventListener('click',(event)=>{
    const number = 3
    document.querySelector('.form-results__container h3').innerHTML = `Распознано ${number} позиции`
 
-
+   document.querySelector('.form-results__subtitle a').style.display = 'inline'
    document.querySelector('.form-results__logo').classList.remove('txt','exl','word')
 
    handleFileRead()
@@ -607,6 +641,160 @@ function mockTableGenerator(results){
 }
 function getTableData(){
    return [
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'1',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'2',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'3',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'4',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'5',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'6',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'7',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'8',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'9',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'10',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'11',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'12',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'13',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
+      {
+         diametr:'Труба 50х50',
+         thickness:'3',
+         steelGrade:'ст.0-20',
+         standard:'ГОСТ 13663-86',
+         length:'14',
+         amount:'36.58 т',
+         price:'53 400 руб/т',
+         warehouse:'Металлторг',
+         city:'Екатеринбург',
+      },
       {
          diametr:'Труба 50х50',
          thickness:'3',
@@ -946,6 +1134,8 @@ function tableUpdate(){
                               `
       table.closest('.result-item__body').appendChild(pagination)
       
+
+      addShowMoreButton(table)
    })
    // Редактировать позицию
    const resultSettings = document.querySelectorAll('.result-item__settings')
@@ -988,7 +1178,11 @@ function tableUpdate(){
    // Перейти на предложения по позиции
    document.querySelectorAll('.result-item__more').forEach(btn=>{
       btn.addEventListener('click',()=>{
+         // document.querySelector('.autosearch-form').classList.remove('file-docpicker-mobile')
+         // document.querySelector('.autosearch__body').style.paddingTop = '60px'
+         document.querySelector('.search-results__header').style.display = 'none'
          document.querySelector('.search-results__list').classList.add('mobile-results')
+         document.querySelector('.autosearch__body').classList.add('more-active')
          document.querySelector('.autosearch-form').classList.add('mobile-results')
          btn.closest('.result-item').querySelector('.result-item__body').style.display = 'block'
          document.querySelector('.autosearch__back').classList.remove('visible')
@@ -1013,6 +1207,8 @@ function tableUpdate(){
    })
  document.querySelectorAll('.result__back .profile__back').forEach(link=>{
    link.addEventListener('click',()=>{
+      document.querySelector('.autosearch__body').classList.remove('more-active')
+
       document.querySelectorAll('.result-item__body').forEach(item=>{
          item.style.display = 'none'
       })
@@ -1065,6 +1261,7 @@ function tableUpdate(){
 const viewOrder = document.querySelector('.view-order.mobile')
 document.querySelector('.form-results__subtitle a').addEventListener('click',()=>{
    viewOrder.style.display = 'block'
+   viewOrder.querySelector('.view-order__text').innerText = document.querySelector('#autosearch-textarea').value
 })
 viewOrder.querySelector('.view-order__backdrop').addEventListener('click',()=>{
    viewOrder.style.display = 'none'
@@ -1072,8 +1269,6 @@ viewOrder.querySelector('.view-order__backdrop').addEventListener('click',()=>{
 viewOrder.querySelector('.view-order__container svg').addEventListener('click',()=>{
    viewOrder.style.display = 'none'
 })
-
-
 
 
 function initPagination(table) {
@@ -1186,3 +1381,78 @@ function initPagination(table) {
 
     })
 }
+// handleFileRead()
+
+
+// function sliceResults(table){
+//    const tableBody = table.querySelector('tbody')
+//    const rows = tableBody.querySelectorAll('tr')
+//    const tableContainer = table.closest('.result-item__body')
+//    const showMoreBtn = document.createElement('div')
+//    showMoreBtn.innerHTML = '<a>Показать еще</a>'
+//    showMoreBtn.addEventListener('click',()=>{
+
+//    })
+   
+//    tableContainer.appendChild(showMoreBtn)
+// }
+
+
+function addShowMoreButton(table) {
+   const tbody = table.querySelector("tbody");
+   const rows = Array.from(tbody.querySelectorAll("tr"));
+   rowsPerClick = 10
+   let visibleRows = rowsPerClick;
+
+   // Создаем кнопку
+   const showMoreBtn = document.createElement("button");
+   showMoreBtn.textContent = "Показать еще";
+   // showMoreBtn.style.display = "none"; // Пока скрываем
+   showMoreBtn.classList.add('secondary-btn','btn_38','result-item__show-more')
+   table.parentElement.appendChild(showMoreBtn);
+
+   // Функция отображения строк
+   function updateRows() {
+       rows.forEach((row, index) => {
+           row.style.display = index < visibleRows ? "contents" : "none";
+       });
+
+       // Показываем кнопку, если есть скрытые строки
+      visibleRows < rows.length ? showMoreBtn.classList.add("visible") : showMoreBtn.classList.remove("visible");
+   }
+
+   // Обработчик клика
+   showMoreBtn.addEventListener("click", () => {
+       visibleRows += rowsPerClick;
+       updateRows();
+   });
+
+   // Инициализация
+   updateRows();
+}
+
+
+const newSearchModal = document.querySelector('.new-application__modal')
+// console.dir(newSearchModal)
+document.querySelector('.newsearch-btn').addEventListener('click',(event)=>{
+   event.preventDefault()
+   newSearchModal.style.display = 'flex'
+})
+newSearchModal.querySelector('.new-application__container svg').addEventListener('click',()=>{
+   newSearchModal.style.display = 'none'
+})
+newSearchModal.querySelector('.new-application__container .cancel').addEventListener('click',()=>{
+   newSearchModal.style.display = 'none'
+})
+newSearchModal.querySelector('.backdrop').addEventListener('click',()=>{
+   newSearchModal.style.display = 'none'
+})
+
+document.querySelector('.autosearch__back__newsearch').addEventListener('click',(event)=>{
+   event.preventDefault()
+   newSearchModal.style.display = 'flex'
+})
+newSearchModal.querySelector('.new-application__container .new').addEventListener('click',()=>{
+   document.querySelector('.autosearch__back .profile__back').dispatchEvent(new Event('click'))
+   newSearchModal.style.display = 'none'
+})
