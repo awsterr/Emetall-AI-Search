@@ -1,4 +1,4 @@
-const ROWS_PER_PAGE = 8
+const ROWS_PER_PAGE = 3 // Количество видимых элементов таблицы по умолчанию
 
 
 
@@ -151,8 +151,11 @@ function handleFileRead(){
       ])
    }, 8000)
 }
+
+// Кнопка назад в мобильной версии с текстом 'E-металл Pro'
 document.querySelector('.autosearch__back .profile__back').addEventListener('click',(e)=>{
    e.preventDefault()
+   document.querySelector('.autosearch-form').classList.remove('file-docpicker-mobile')
    document.querySelector('.autosearch').classList.remove('search-mobile','finished')
    document.querySelector('#autosearch-form').classList.remove('pending')
    document.querySelector('.autosearch-trial').classList.remove('pending')
@@ -164,6 +167,8 @@ document.querySelector('.autosearch__back .profile__back').addEventListener('cli
 
 })
 
+
+// Второй параграф в поле ввода
 const textarea = document.getElementById('autosearch-textarea')
 const symbolCounter = document.getElementById('symbol-counter')
 const placeholder = document.getElementById('pseudo-placeholder')
@@ -241,6 +246,8 @@ document.getElementById('docpicker').addEventListener('change',(event)=>{
    showFileInfo(files[0])
 })
 
+
+// Почта помещается в буффер обмена
 const copyBtn = document.getElementById('search-request__copy-btn')
 copyBtn.addEventListener('click',()=>{
    navigator.clipboard.writeText('order+507@e-metall.ru')
@@ -275,6 +282,7 @@ function showFileInfo(file){
    h3.innerHTML = `Распознано ${number} позиции`
 }
 
+// Форматирование единиц измерения веса файла
 function formatFileSize(size) {
    const units = ["Б", "КБ", "МБ"]
    let unitIndex = 0
@@ -503,6 +511,14 @@ function blurTable(refreshBtn){
    table.appendChild(loadingBlur)
    loadingBlur.appendChild(circle)
 
+
+   // Сбрасываем действия кнопки "показать еще"
+   table.querySelectorAll('.result-table__tbody-tr').forEach((row, index) => {
+      if (index >= ROWS_PER_PAGE) { 
+         row.classList.remove('desktop-visible')
+      }
+   })
+
    refreshBtn.inert = true
    const showMore = container.querySelector('.result-item__show-more')
    showMore.disabled = true
@@ -514,6 +530,8 @@ function blurTable(refreshBtn){
 
    }, 3000)
 }
+
+
 const findBtn = document.getElementById('btn-find')
 findBtn.addEventListener('click',(event)=>{
    event.preventDefault()
@@ -1143,15 +1161,15 @@ function tableUpdate(){
    // Закрыть окно 'Редактировать позицию'
    document.querySelectorAll('.position-filter svg.mobile').forEach(svg=>{
       svg.addEventListener('click',()=>{
-         svg.closest('.position-filter').style.display = 'none'
-         document.querySelector('#dragover-backdrop').style.display = 'none'
+         svg.closest('.position-filter').style.display = ''
+         document.querySelector('#dragover-backdrop').style.display = ''
          document.body.style.overflow = ''
       })
    })
    backdrop.addEventListener('click',()=>{
-      document.querySelector('#dragover-backdrop').style.display = 'none'
+      document.querySelector('#dragover-backdrop').style.display = ''
       document.querySelectorAll('.position-filter').forEach(position=>{
-         position.style.display = 'none'
+         position.style.display = ''
       })
       document.body.style.overflow = ''
 
@@ -1161,7 +1179,7 @@ function tableUpdate(){
    document.querySelectorAll('.mobile-delete').forEach((btn=>{
       btn.addEventListener('click',()=>{
          btn.closest('.search-results__item.result-item').remove()
-         document.querySelector('#dragover-backdrop').style.display = 'none'
+         document.querySelector('#dragover-backdrop').style.display = ''
          document.body.style.overflow = ''
       })
    }))
@@ -1169,20 +1187,17 @@ function tableUpdate(){
    // Перейти на предложения по позиции
    document.querySelectorAll('.result-item__more').forEach(btn=>{
       btn.addEventListener('click',()=>{
-         document.querySelector('.search-results__header').style.display = 'none'
+         const closestResultItem = btn.closest('.result-item')
+
+         document.querySelector('.search-results__header').classList.add('mobile-more-active')
          document.querySelector('.search-results__list').classList.add('mobile-results')
          document.querySelector('.autosearch__body').classList.add('more-active')
          document.querySelector('.autosearch-form').classList.add('mobile-results')
-         btn.closest('.result-item').querySelector('.result-item__body').style.display = 'block'
+         closestResultItem.classList.add('current-item')
          document.querySelector('.autosearch__back').classList.remove('visible')
-         initPagination(btn.closest('.result-item').querySelector('table'))
-         btn.closest('.result-item__header').style.display = 'none'
-         document.querySelectorAll('.result-item').forEach(li=>{
-            if(li !== btn.closest('.result-item')){
-               li.style.display='none'
-            }
-         })
 
+
+         initPagination(closestResultItem.querySelector('table')) //Проверить
       })
    })
 
@@ -1195,23 +1210,18 @@ function tableUpdate(){
    })
  document.querySelectorAll('.result__back .profile__back').forEach(link=>{
    link.addEventListener('click',()=>{
-      document.querySelector('.autosearch__body').classList.remove('more-active')
+      document.querySelector('.search-results__header').classList.remove('mobile-more-active')
 
-      document.querySelectorAll('.result-item__body').forEach(item=>{
-         item.style.display = 'none'
-      })
-      document.querySelectorAll('.result-item').forEach(item=>{
-         item.style.display='block'
-      })
-      document.querySelector('.autosearch__back').classList.add('visible')
       document.querySelector('.search-results__list').classList.remove('mobile-results')
+      document.querySelector('.autosearch__body').classList.remove('more-active')
       document.querySelector('.autosearch-form').classList.remove('mobile-results')
-      document.querySelectorAll('.result-item__header').forEach(header=>{
-         header.style.display = 'flex'
+
+      document.querySelector('.autosearch__back').classList.add('visible')
+      
+      
+      document.querySelectorAll('.result-item').forEach(item=>{
+         item.classList.remove('current-item')
       })
-
-
-
    })
  })
 }
@@ -1275,7 +1285,7 @@ function addShowMoreButton(table) {
 
    function updateRows() {
        rows.forEach((row, index) => {
-           row.style.display = index < visibleRows ? "contents" : "none"
+           row.classList.toggle('desktop-visible',index < visibleRows)
        })
 
       visibleRows < rows.length ? showMoreBtn.classList.add("visible") : showMoreBtn.classList.remove("visible")
@@ -1331,7 +1341,9 @@ function initPagination(table) {
    const totalPages = Math.ceil(cards.length / cardsPerPage)
 
    function showCards() {
-      cards.forEach(card => card.style.display = 'none')
+      cards.forEach(card => {
+         card.classList.remove('mobile-visible')
+      })
 
       const startIndex = currentPage * cardsPerPage
       let endIndex = startIndex + visibleCardsCount
@@ -1341,7 +1353,8 @@ function initPagination(table) {
       }
 
       cards.slice(startIndex, endIndex).forEach(card => {
-         card.style.display = 'flex'
+         card.classList.add('mobile-visible')
+
       })
 
       if (endIndex === cards.length) {

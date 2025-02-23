@@ -900,7 +900,11 @@ a {
                   display: contents;
 
                   .result-table__tbody-tr {
-                     display: contents;
+                     display: none;
+
+                     &.desktop-visible {
+                        display: contents;
+                     }
 
                      &:nth-child(odd) .result-table__td {
                         background: #f8f8f8;
@@ -1475,7 +1479,7 @@ a {
 
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
    .autosearch {
       .autosearch__container {
          padding: 0;
@@ -1833,6 +1837,10 @@ a {
                display: flex;
                margin: 0;
 
+               &.mobile-more-active {
+                  display: none;
+               }
+
                .search-results__mobile-header {
                   display: block;
                   width: 90%;
@@ -1855,6 +1863,34 @@ a {
                   .table.table-striped {
                      padding-bottom: 16px;
                   }
+
+                  .result-item {
+                     display: none;
+
+                     &.current-item {
+                        display: block;
+
+                        .result-item__body {
+                           display: block;
+
+                           .result-table__tbody {
+                              .result-table__tbody-tr {
+                                 &.mobile-visible {
+                                    display: flex;
+                                 }
+
+                                 display: none;
+                              }
+                           }
+                        }
+
+                        .result-item__header {
+                           display: none;
+                        }
+                     }
+                  }
+
+
                }
 
                .search-results__item {
@@ -1997,6 +2033,8 @@ a {
 
       .search-results__header {
          display: none;
+
+
       }
 
       .search-results__list {
@@ -2254,6 +2292,11 @@ a {
 
                         .mobile-result-header__text {
                            width: 80%;
+                        }
+
+                        .mobile-result-header__link {
+                           display: flex;
+                           align-items: center;
                         }
                      }
                   }
