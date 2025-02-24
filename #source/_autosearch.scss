@@ -1018,12 +1018,14 @@ a {
                         }
 
                         &.btns {
+                           justify-content: space-evenly;
+
                            .btn-cart {
                               display: inline-block;
                               height: 24px;
                               padding: 2px 10px;
                               font-size: 14px;
-                              margin-right: 20px;
+                              // margin-right: 20px;
                            }
 
                            .more-container {
@@ -1380,6 +1382,44 @@ a {
 }
 
 
+.sub .subscribe-pro,
+.no-sub .subscribe-pro {
+   background: linear-gradient(257.95deg, #2764E0 7.3%, #DD0858 100%);
+   color: #fff;
+   width: 25px;
+   min-width: 25px;
+   height: 16px;
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 10px;
+   border-radius: 3px;
+
+   &:visited {
+      color: #fff !important;
+   }
+}
+
+.no-sub {
+   .no-sub__base {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+   }
+
+   .btns {
+      .no-sub__btn {
+         height: 24px;
+         padding: 2px 10px;
+         font-size: 14px;
+         background: #212529;
+         width: 100%;
+         margin-right: 32px;
+      }
+   }
+}
+
+
 @media screen and (max-width: 1439px) {
    .additional-info {
       .search-request {
@@ -1476,7 +1516,10 @@ a {
       padding: 5px;
    }
 
+   .no-sub .btns .no-sub__btn {
+      margin-right: 5px;
 
+   }
 }
 
 @media screen and (max-width: 768px) {
@@ -2335,16 +2378,17 @@ a {
 
                            &.warehouse {
                               .tdvalue {
-                                 flex-direction: row-reverse;
+                                 // flex-direction: row-reverse;
 
                                  .rating {
                                     background-image: url(../img/table-raiting-bg-reverse.svg);
                                     padding: 0;
+                                    order: 2;
                                  }
                               }
                            }
 
-                           span {
+                           >span {
                               display: inline;
                               width: auto;
 
@@ -2427,6 +2471,34 @@ a {
             display: none;
          }
 
+      }
+   }
+
+   .no-sub {
+      .no-sub__base {
+         gap: 8px;
+         flex-direction: row-reverse;
+      }
+
+      .btns {
+         .no-sub__btn {
+            height: 38px;
+            margin-right: 0;
+
+            &:hover {
+               background: $gray;
+            }
+
+            &:active {
+               background: #000;
+            }
+         }
+      }
+   }
+
+   .sub {
+      .subscribe-pro {
+         order: 3;
       }
    }
 }
