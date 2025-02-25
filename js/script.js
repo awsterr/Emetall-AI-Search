@@ -41,15 +41,15 @@ function handleFileRead(){
 
    document.querySelector('.autosearch').classList.add('search-mobile')
    document.querySelector('.search-results').classList.add('pending')
-   // setTimeout(() => changeProgress(9), 1000)
-   // setTimeout(() => changeProgress(24), 2000)
-   // setTimeout(() => changeProgress(34), 3000)
-   // setTimeout(() => changeProgress(38), 3866)
-   // setTimeout(() => changeProgress(42), 4000)
-   // setTimeout(() => changeProgress(45), 4500)
-   // setTimeout(() => changeProgress(85), 5600)
-   // setTimeout(() => changeProgress(98), 6266)
-   // setTimeout(() => {
+   setTimeout(() => changeProgress(9), 1000)
+   setTimeout(() => changeProgress(24), 2000)
+   setTimeout(() => changeProgress(34), 3000)
+   setTimeout(() => changeProgress(38), 3866)
+   setTimeout(() => changeProgress(42), 4000)
+   setTimeout(() => changeProgress(45), 4500)
+   setTimeout(() => changeProgress(85), 5600)
+   setTimeout(() => changeProgress(98), 6266)
+   setTimeout(() => {
       changeProgress(100)
       formResults.classList.add('finished')
       document.querySelector('.search-results').classList.add('finished')
@@ -149,7 +149,7 @@ function handleFileRead(){
             unit:'Кг',
            }
       ])
-   // }, 8000)
+   }, 8000)
 }
 
 // Кнопка назад в мобильной версии с текстом 'E-металл Pro'
