@@ -1224,6 +1224,8 @@ function tableUpdate(){
       })
    })
  })
+ replacePositionWithPro(document.querySelectorAll('.result-table__tbody-tr')[0],true)
+replacePositionWithPro(document.querySelectorAll('.result-table__tbody-tr')[1],false)
 }
 
 
@@ -1440,7 +1442,6 @@ function initPagination(table) {
    })
 }
 
-handleFileRead()
 
 
 // Добавляет отображение статуса подписки. (isSub по умолчанию null)
@@ -1460,5 +1461,3 @@ function replacePositionWithPro(tr,isSub){
       default:
    }
 }
-replacePositionWithPro(document.querySelectorAll('.result-table__tbody-tr')[0],true)
-replacePositionWithPro(document.querySelectorAll('.result-table__tbody-tr')[1],false)
