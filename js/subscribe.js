@@ -32,7 +32,7 @@ function renderSubscribeInfo(subscribeStatus){
                                                    </svg>
                                                    <p class="blue lh_150">Вам доступен бесплатный пробный период сроком на&nbsp;1&nbsp;месяц!</p>
                                                 </div>
-                                                <a href="" class="btn btn_38 fs_14" id="trial">Попробовать <span class="desktop">30 дней</span> бесплатно</a>
+                                                <a href="" class="btn btn_38 fs_14" id="trial">Попробовать <span class="desktop">&nbsp;30 дней&nbsp;</span> бесплатно</a>
                                              </div>
                                              <div class="profile__subscribe__about fs_14">
                                                 <p class="fw_600 mb_12">Что входит в пробный период?</p>
