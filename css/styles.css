@@ -3247,8 +3247,8 @@ ul.menu a {
 }
 .profile .profile__subscribe__advantages li {
   position: relative;
-  padding-left: 25px;
-  line-height: 160%;
+  padding-left: 23px;
+  font-size: 14px;
 }
 .profile .profile__subscribe__advantages li::before {
   content: "";
@@ -3259,14 +3259,14 @@ ul.menu a {
   width: 15px;
   height: 15px;
   background-image: url(../img/ai-file-success.svg);
-  background-size: contain;
+  background-size: 13px;
   background-repeat: no-repeat;
 }
 .profile .pro {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 1px 4px;
+  padding: 1px 8px;
   border-radius: 6px;
   background: #212529;
   color: #fff;
@@ -3282,27 +3282,76 @@ ul.menu a {
 }
 .profile__subscribe__info .profile__subscribe__actual {
   border-radius: 10px;
-  border: 2px solid #2764E0;
+  background-color: #EFF2F6;
   width: 100%;
   padding: 24px 32px 32px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 .profile__subscribe__info .profile__subscribe__actual .pro {
   margin-left: 10px;
+  padding: 1px 4px;
+}
+.profile__subscribe__info .profile__subscribe__actual__title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.profile__subscribe__info .profile__subscribe__actual__title .pro-inactive {
+  background: #fff;
+  color: #6C757D;
+}
+.profile__subscribe__info .profile__subscribe__actual .subscribe-status.active {
+  color: #009861;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  background-color: rgba(0, 152, 97, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: normal;
+  line-height: 1.4;
+}
+.profile__subscribe__info .profile__subscribe__actual .subscribe-status.active svg {
+  margin-top: 4px;
+}
+.profile__subscribe__info .profile__subscribe__actual .subscribe-status.inactive {
+  background-color: #FFF;
+  color: #6C757D;
+  font-weight: normal;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.profile__subscribe__info .profile__subscribe__actual .short {
+  max-width: 207px;
+}
+.profile__subscribe__info .profile__subscribe__actual .profile-subscribe__body-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.profile__subscribe__info .profile__subscribe__actual .profile-subscribe__body-wrapper .diamond {
+  display: block;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  min-height: 48px;
+  min-width: 48px;
 }
 .profile__subscribe__info .profile__subscribe__actual .btn {
   width: 100%;
   margin-top: auto;
-}
-.profile__subscribe__info .profile__subscribe__actual .btn:visited {
-  color: #FFF;
+  text-wrap: nowrap;
 }
 .profile__subscribe__info .profile__subscribe__about {
   border-radius: 10px;
   border: 1px solid #DDDDDD;
   width: 100%;
-  padding: 24px 32px;
+  padding: 24px 24px 24px 32px;
+  font-size: 16px;
 }
 .profile__subscribe__info .profile__subscribe__about__wrapper {
   display: flex;
@@ -3320,26 +3369,45 @@ ul.menu a {
   margin-left: 10px;
   height: 22px;
 }
-.profile__subscribe__get-sub .toggle span {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2px 4px;
-  font-size: 12px;
-  border-radius: 6px;
-  background: #DD0858;
-  color: #fff;
-  height: 20px;
+.profile__subscribe__info .profile__subscribe__about .profile__subscribe__advantages {
+  line-height: 1.6;
+}
+.profile__subscribe__info .profile__subscribe__about .profile__subscribe__advantages li::before {
+  top: calc(1em + 3px);
+}
+.profile__subscribe__info .profile__subscribe__about .profile__subscribe__advantages li.disabled {
+  color: #6C757D;
+}
+.profile__subscribe__info .profile__subscribe__about .profile__subscribe__advantages li.disabled::before {
+  background-image: url(../img/cross.svg);
+  top: 14px;
+}
+.profile__subscribe__get-sub .toggle svg {
   margin-left: 8px;
+}
+.profile__subscribe .pro-plus {
+  background: linear-gradient(257.95deg, #2764E0 7.3%, #DD0858 100%);
+}
+.profile__subscribe .light {
+  color: #212529;
+  font-weight: 600;
+  line-height: 1;
+  padding: 8px;
+  background: linear-gradient(257.95deg, rgba(39, 100, 224, 0.1) 7.3%, rgba(221, 8, 88, 0.1) 100%);
 }
 .profile__subscribe__cards {
   display: flex;
-  gap: 26px;
+  gap: 12px;
 }
 .profile__subscribe__cards .profile__subscribe__pro {
-  background: #f2f2f4;
   border-radius: 10px;
-  padding: 24px 32px 40px;
+  border: 1px solid #e4e4e4;
+  padding: 24px;
+  width: 100%;
+}
+.profile__subscribe__cards .profile__subscribe__pro:nth-child(2) {
+  border: 1px solid #2764E0;
+  outline: 1px solid #2764E0;
 }
 .profile__subscribe__cards .profile__subscribe__pro .pro-plus {
   background: linear-gradient(257.95deg, #2764E0 7.3%, #DD0858 100%);
@@ -3348,22 +3416,212 @@ ul.menu a {
   width: 100%;
 }
 .profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages li {
-  margin-bottom: 8px;
+  margin-bottom: 5px;
+  line-height: 2;
+}
+.profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages li::before {
+  background-image: url(../img/ai-file-success-blue.svg);
+  top: calc(1em + 4px);
+}
+.profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages hr {
+  border: none;
+  border-top: 1px solid #e4e4e4;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+.profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages .dim {
+  opacity: 0.45;
+}
+.profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages .dim::before {
+  background-image: url(../img/cross.svg);
+  top: calc(50% + 3px);
+  background-size: 12px;
+  left: 2px;
+}
+.profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages .new {
+  background-color: rgba(39, 100, 224, 0.1019607843);
+  border-radius: 15px;
+  margin-left: -8px;
+  padding-left: 31px;
+}
+.profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages .new::before {
+  left: 8px;
 }
 .profile__subscribe__cards .profile__subscribe__saving {
   margin-bottom: 17px;
   font-size: 11px;
+  line-height: 2;
 }
 .profile__subscribe__cards .profile__subscribe__saving span {
   color: #2764E0;
   display: inline-block;
   margin-left: 7px;
-  background-color: #E9F0FC;
+  background-color: rgba(39, 100, 224, 0.2);
+  border-radius: 4px;
+  padding: 4px;
+  line-height: 1;
+}
+.profile__subscribe__warning {
+  text-align: center;
+  margin: 32px 0 12px;
+}
+
+.subscribe-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3019607843);
+  display: none;
+}
+.subscribe-modal__body {
+  max-width: 416px;
+  background: #fff;
+  padding: 40px 46px 32px;
+  box-shadow: 0px 12px 30px 0px rgba(0, 0, 0, 0.1215686275);
+  border-radius: 15px;
+  position: relative;
+}
+.subscribe-modal__body.success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 24px 24px;
+  text-align: center;
+}
+.subscribe-modal__body.success .diamond {
+  min-height: 58px;
+  min-width: 58px;
+  display: block;
+  padding: 21px;
+  background-color: #EFF2F6;
+  border-radius: 50%;
+  box-sizing: content-box;
+  margin-bottom: 32px;
+}
+.subscribe-modal__body.success .profile__subscribe__actual__title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+.subscribe-modal__body.success .profile__subscribe__actual__title .pro {
+  margin-left: 10px;
+  padding: 1px 4px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  color: #fff;
+  height: 24px;
+  line-height: 1;
+  background: linear-gradient(257.95deg, #2764E0 7.3%, #DD0858 100%);
+}
+.subscribe-modal__body.success .profile__subscribe__actual__title .active {
+  color: #009861;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  background-color: rgba(0, 152, 97, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: normal;
+  line-height: 1.4;
+}
+.subscribe-modal__body.success .subscribe-modal__title {
+  margin-bottom: 16px;
+}
+.subscribe-modal__body.success .subscribe-modal__text {
+  margin-bottom: 25px;
+}
+.subscribe-modal__body.success .btn {
+  width: 100%;
+  height: 50px;
+}
+.subscribe-modal__body .close-icon {
+  padding: 6px;
+  box-sizing: content-box;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+.subscribe-modal__body .subscribe-modal__title {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.subscribe-modal__body .subscribe-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.subscribe-modal__body .subscribe-modal__form .subscribe-modal__account {
+  display: flex;
+  padding: 24px 20px;
+  border: 1px solid #E9E9E9;
+  border-radius: 6px;
+}
+.subscribe-modal__body .subscribe-modal__form input {
+  height: 40px;
+  border: 1px solid #E9E9E9;
+  border-radius: 6px;
+  text-align: right;
+  padding: 10px 16px;
+  width: 100%;
+  font-size: 15px;
+}
+.subscribe-modal__body .subscribe-modal__form input::before {
+  content: "ИНН";
+  width: 10px;
+  height: 10px;
+}
+.subscribe-modal__body .subscribe-modal__form input:focus {
+  outline-color: #2764E0;
+}
+.subscribe-modal__body .subscribe-modal__form .relative {
+  position: relative;
+  display: flex;
+}
+.subscribe-modal__body .subscribe-modal__form label {
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: text;
+  font-size: 15px;
+  color: #6C757D;
+}
+.subscribe-modal__body .subscribe-modal__form a.btn {
+  width: 100%;
+  height: 50px;
+  margin: 12px 0;
+}
+.subscribe-modal__body .subscribe-modal__form a.no-visited {
+  text-align: center;
+}
+.subscribe-modal__body .subscribe-modal__form a.no-visited:visited {
+  color: #2764E0;
 }
 
 @media screen and (max-width: 1439px) {
+  .profile__subscribe__wrapper {
+    padding: 20px;
+  }
   .profile__subscribe__about__wrapper {
-    flex-direction: column;
+    gap: 12px;
+    font-size: 14px;
   }
   .profile__subscribe__about__wrapper .profile__subscribe__cancel-sub {
     margin-top: 10px;
@@ -3388,9 +3646,21 @@ ul.menu a {
   }
 }
 @media screen and (max-width: 1024px) {
+  .profile__subscribe .profile__subscribe__info {
+    flex-direction: column;
+  }
+  .profile__subscribe .profile__subscribe__about__wrapper {
+    flex-wrap: wrap;
+  }
+  .profile__subscribe .profile__subscribe__about,
+  .profile__subscribe .profile__subscribe__actual {
+    padding: 16px;
+  }
+  .profile__subscribe .profile__subscribe__about a.btn,
+  .profile__subscribe .profile__subscribe__actual a.btn {
+    margin-top: 32px;
+  }
   .profile__subscribe__info {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
     gap: 16px;
   }
   .profile__subscribe .toggle {
@@ -3399,6 +3669,8 @@ ul.menu a {
   }
   .profile__subscribe .toggle > div {
     width: 100%;
+    padding: 5px;
+    height: 28px;
   }
   .profile__subscribe__cards {
     display: grid;
@@ -3503,6 +3775,24 @@ ul.menu a {
   }
   .profile__searches__wrapper .profile__searches__card-list {
     margin: 0 16px;
+  }
+  .profile .subscribe-modal {
+    align-items: flex-end;
+  }
+  .profile .subscribe-modal__body {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 24px 16px 32px;
+  }
+  .profile .subscribe-modal__body .subscribe-modal__title {
+    text-align: left;
+    font-size: 20px;
+  }
+  .profile .subscribe-modal__body.success {
+    padding: 40px 16px 40px;
+  }
+  .profile .subscribe-modal__body.success .subscribe-modal__title {
+    text-align: center;
   }
 }
 a {

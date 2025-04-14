@@ -87,105 +87,189 @@
                   </p>
                   
                   <div class="profile__subscribe__wrapper">
+                     
                      <div class="profile__subscribe__info mb_48">
-                        <div class="profile__subscribe__actual">
-                           <p class="fw_600 mb_12">Ваша подписка <span class="pro">Pro</span></p>
-                           <p class="gray2 lh_150">У вас действует бесплатный пробный <br> период еще 27 дней</p>
-                           <a href="" class="btn btn_38 fs_14">Купить подписку</a>
+                        <!-- <div class="profile__subscribe__actual">
+                           <p class="fw_600 mb_22 profile__subscribe__actual__title">Ваша подписка <span class="pro pro-plus">Pro</span>
+                              
+                              <span class="subscribe-status active">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10" fill="none">
+                                    <path d="M0.2955 5.47787C0.20213 5.38904 0.127789 5.28216 0.0769916 5.16371C0.0261941 5.04527 0 4.91774 0 4.78887C0 4.65999 0.0261941 4.53246 0.0769916 4.41402C0.127789 4.29558 0.20213 4.1887 0.2955 4.09987L0.2625 4.13087C0.456752 3.94695 0.714296 3.84479 0.9818 3.84553C1.2493 3.84628 1.50628 3.94987 1.6995 4.13487L4.5795 6.90487L11.4645 0.282867C11.6584 0.100969 11.9143 -0.000185533 12.1802 2.5547e-07C12.4461 0.000186044 12.7019 0.101699 12.8955 0.283867L12.8625 0.252867C12.9565 0.341869 13.0313 0.44916 13.0823 0.568143C13.1333 0.687125 13.1594 0.815282 13.159 0.944731C13.1587 1.07418 13.1318 1.20218 13.0801 1.32087C13.0284 1.43955 12.953 1.54641 12.8585 1.63487L5.3005 8.90287C5.10609 9.08583 4.84945 9.18813 4.58249 9.18905C4.31552 9.18998 4.05817 9.08948 3.8625 8.90787L0.2955 5.47787Z" fill="currentColor"/>
+                                 </svg>Активна
+                              </span>
+                           </p>
+                           <p class="gray2 lh_150">Действует до 12 октября 2025</p>
                         </div>
                         <div class="profile__subscribe__about fs_14">
-                           <p class="fw_600 mb_12">Что входит в подписку?</p>
-                           <ul class="profile__subscribe__advantages mb_22">
-                              <li>50 автопоисков в месяц</li>
-                              <li>До 100 позиций в одной заявке</li>
-                              <li>Разбор многопозиционных заявок</li>
-                              <li>Отправка заявки в любом формате</li>
+                           <p class="fw_600 mb_12">Что входит в пробный период?</p>
+                           <ul class="profile__subscribe__advantages mb_18">
+                              <li>Базовые функции сайта</li>
+                              <li>До 50 автопоисков в месяц</li>
                               <li>Расширенная база поставщиков</li>
+                              <li>Отправка заявки в любом формате</li>
+                              <li>Разбор многопозиционных заявок</li>
                            </ul>
                            <div class="profile__subscribe__about__wrapper">
                               <a href="" class="no-visited">
-                                 Все преимущества
+                                 Подробнее
                               </a>
-                              <a href="" class="profile__subscribe__cancel-sub">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                    <path d="M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C15.9953 3.5837 12.4163 0.00472099 8 0ZM3.55661 2.77025C4.79743 1.7172 6.3726 1.1403 8 1.14288C9.62074 1.14238 11.1887 1.71867 12.4234 2.76861L2.7663 12.4257C0.318248 9.54119 0.672088 5.2183 3.55661 2.77025ZM12.4434 13.2298C11.2026 14.2828 9.62744 14.8597 8.00003 14.8572C6.37929 14.8577 4.81129 14.2814 3.5766 13.2314L13.2338 3.57426C15.6818 6.45882 15.3279 10.7817 12.4434 13.2298Z" fill="currentColor"/>
-                                 </svg>
-                                 Отменить подписку
+                              <a href="" class="no-visited">
+                                 Нужна помощь?
                               </a>
                            </div>
-                        </div>
+                        </div> -->
                      </div>
+                     
                      <div class="profile__subscribe__get-sub">
                         <p class="fs_20 fw_600 mb_8">
                            Приобрести подписку
                         </p>
                         <p class="mb_16">
-                           Выберите подходящий тарифный план
+                           Выберите подходящий тарифный план. Чем больше период – тем больше скидка!
                         </p>
                         <div class="toggle mb_32 fs_14">
-                           <div>Ежемесячная оплата</div>
-                           <div class="active">Ежегодная оплата <span>–30%</span></div>
+                           <div id="toggle-month">
+                              1 месяц
+                           </div>
+                           <div class="active" id="toggle-halfyear">
+                              <span>6 месяцев</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" viewBox="0 0 10 16" fill="none">
+                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M6.39592 16C7.17058 14.7952 7.24195 13.4939 6.61009 12.0962C6.43437 12.8461 6.11295 13.3012 5.64577 13.4616C6.07961 12.1586 5.71709 10.7508 4.5582 9.23837C4.53319 10.8005 4.17625 11.9384 3.48736 12.6522C2.53836 13.6345 2.54951 14.7431 3.52083 15.978C-0.511281 13.7212 -1.08017 10.6946 1.8142 6.89797C1.99368 7.81517 2.42872 8.37827 3.11929 8.58727C2.36654 5.2279 3.15853 2.36547 5.49516 0C5.50952 5.2495 7.04015 5.7161 8.9754 8.05937C11.0649 10.8714 9.83699 14.1166 6.39592 16Z" fill="#DD0858"/>
+                              </svg>
+                           </div>
+                           <div id="toggle-year">
+                              <span>12 месяцев</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" viewBox="0 0 10 16" fill="none">
+                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M6.39592 16C7.17058 14.7952 7.24195 13.4939 6.61009 12.0962C6.43437 12.8461 6.11295 13.3012 5.64577 13.4616C6.07961 12.1586 5.71709 10.7508 4.5582 9.23837C4.53319 10.8005 4.17625 11.9384 3.48736 12.6522C2.53836 13.6345 2.54951 14.7431 3.52083 15.978C-0.511281 13.7212 -1.08017 10.6946 1.8142 6.89797C1.99368 7.81517 2.42872 8.37827 3.11929 8.58727C2.36654 5.2279 3.15853 2.36547 5.49516 0C5.50952 5.2495 7.04015 5.7161 8.9754 8.05937C11.0649 10.8714 9.83699 14.1166 6.39592 16Z" fill="#DD0858"/>
+                              </svg>
+                           </div>
                         </div>
-                        <script>
-                           const toggle = document.querySelector('.toggle');
-                           if (window.innerWidth <= 1024) {
-                              toggle.children[0].innerText = 'Раз в месяц'
-                              toggle.children[1].innerHTML = 'Раз в год <span>–30%</span>'
-                           }
-                           window.addEventListener('resize', function() {
-
-                              if (window.innerWidth <= 1024) {
-                                 toggle.children[0].innerText = 'Раз в месяц'
-                                 toggle.children[1].innerHTML = 'Раз в год <span>–30%</span>'
-                              } else {
-                                 toggle.children[0].innerText = 'Ежемесячная оплата'
-                                 toggle.children[1].innerHTML = 'Ежегодная оплата <span>–30%</span>'
-                              }
-                           });   
-                        </script>
                      </div>
                      <div class="profile__subscribe__cards">
+                        <!-- TODO math -->
                         <div class="profile__subscribe__pro">
-                           <p class="profile__subscribe__name pro">Pro</p>
-                           <p class="profile__subscribe__price fs_24 fw_600">3 430 руб. <span class="fs_14 fw_400">/ месяц</span></p>
-                           <p class="profile__subscribe__saving">За год выйдет 41 160 ₽<span>Экономия 17 640 ₽</span></p>
-                           <a href="" class="btn btn_38 fs_14 mb_24">Купить подписку</a>
+                           <p class="profile__subscribe__name pro light">Лайт</p>
+                           <p class="profile__subscribe__price fs_24 fw_600">4 000 руб. <span class="fs_14 fw_400">/ месяц</span></p>
+                           <p class="profile__subscribe__saving">За 6 месяцев выйдет 24&nbsp;000&nbsp;₽<span>Экономия 5&nbsp;400&nbsp;₽</span></p>
+                           <a href="" class="btn btn_38 secondary-btn fs_14 mb_24">Выставить счет</a>
                            <ul class="profile__subscribe__advantages mb_22">
-                              <li class="fw_600">50 автопоисков в месяц</li>
-                              <li class="fw_600">До 100 позиций в одной заявке</li>
+                              <li class="dim">Без автопоиска</li>
+                              <hr>
                               <li>Расширенная база поставщиков</li>
-                              <li>Отправка заявки в любом формате</li>
-                              <li>Разбор многопозиционных заявок</li>
-                              <li>Формирование конкурентного листа в PDF&#8209;формате</li>
-                              <li>Возможность скачивать прайс&#8209;листы</li>
-                              <li>Приоритетная техподдержка</li>
+                           </ul>
+                        </div>
+                        <div class="profile__subscribe__pro">
+                           <p class="profile__subscribe__name pro pro-plus">Pro</p>
+                           <p class="profile__subscribe__price fs_24 fw_600">4 833 руб. <span class="fs_14 fw_400">/ месяц</span></p>
+                           <p class="profile__subscribe__saving">За 6 месяцев выйдет 29&nbsp;000&nbsp;₽<span>Экономия 6&nbsp;400&nbsp;₽</span></p>
+                           <a href="" class="btn btn_38 fs_14 mb_24">Выставить счет</a>
+                           <ul class="profile__subscribe__advantages mb_22">
+                              <li class="blue fw_600">До 50 автопоисков в месяц</li>
+                              <hr>
+                              <li>Расширенная база поставщиков</li>
+                              <li class="new blue">Отправка заявки в любом формате</li>
+                              <li class="new blue">Разбор многопозиционных заявок</li>
                            </ul>
                         </div>
                         <div class="profile__subscribe__pro">
                            <p class="profile__subscribe__name pro pro-plus">Pro+</p>
-                           <p class="profile__subscribe__price fs_24 fw_600">4 130 руб. <span class="fs_14 fw_400">/ месяц</span></p>
-                           <p class="profile__subscribe__saving">За год выйдет 49 560 ₽<span>Экономия 21 240 ₽</span></p>
-                           <a href="" class="btn secondary-btn btn_38 fs_14 mb_24">Купить подписку</a>
+                           <p class="profile__subscribe__price fs_24 fw_600">6 500 руб. <span class="fs_14 fw_400">/ месяц</span></p>
+                           <p class="profile__subscribe__saving">За 6 месяцев выйдет 39&nbsp;000&nbsp;₽<span>Экономия 8&nbsp;400&nbsp;₽</span></p>
+                           <a href="" class="btn secondary-btn btn_38 fs_14 mb_24">Выставить счет</a>
                            <ul class="profile__subscribe__advantages mb_22">
-                              <li class="fw_600">50 автопоисков в месяц</li>
-                              <li class="fw_600">До 100 позиций в одной заявке</li>
+                              <li class="blue fw_600">Безлимит автопоисков</li>
+                              <hr>
                               <li>Расширенная база поставщиков</li>
                               <li>Отправка заявки в любом формате</li>
                               <li>Разбор многопозиционных заявок</li>
-                              <li>Формирование конкурентного листа в PDF&#8209;формате</li>
-                              <li>Возможность скачивать прайс&#8209;листы</li>
-                              <li>Приоритетная техподдержка</li>
+                              <li class="new blue">Формирование конкурентного листа в PDF-формате</li>
+                              <li class="new blue">Возможность скачивать прайс-листы</li>
+                              <li class="new blue">Приоритетная техподдержка</li>
                            </ul>
                         </div>
                      </div>
-                     
+                     <p class="profile__subscribe__warning">Нажимая кнопку, вы принимаете <a href="" class="blue">условия соглашения</a></p>
+                     <script>
+                        const toggle1 = document.getElementById('toggle-month')
+                        const toggle2 = document.getElementById('toggle-halfyear')
+                        const toggle3 = document.getElementById('toggle-year')
+                        const prices1 = ['4 900 руб. <span class="fs_14 fw_400">/ месяц</span>','5 900 руб. <span class="fs_14 fw_400">/ месяц</span>','7 900 руб. <span class="fs_14 fw_400">/ месяц</span>']
+                        const prices6 = ['4 000 руб. <span class="fs_14 fw_400">/ месяц</span>','4 833  руб. <span class="fs_14 fw_400">/ месяц</span>','6 500 руб. <span class="fs_14 fw_400">/ месяц</span>']
+                        const savings6 = ['За 6 месяцев выйдет 24 000 ₽<span>Экономия 5 400 ₽</span>','За 6 месяцев выйдет 29 000 ₽<span>Экономия 6 400 ₽</span>','За 6 месяцев выйдет 39 000 ₽<span>Экономия 8 400 ₽</span>']
+                        const prices12 = ['3 250 руб. <span class="fs_14 fw_400">/ месяц</span>','4 083  руб. <span class="fs_14 fw_400">/ месяц</span>','5 750 руб. <span class="fs_14 fw_400">/ месяц</span>']
+                        const savings12 = ['За 12 месяцев выйдет 39 000 ₽<span>Экономия 19 800 ₽</span>','За 12 месяцев выйдет 49 000 ₽<span>Экономия 21 800 ₽</span>','За 12 месяцев выйдет 69 000 ₽<span>Экономия 25 800 ₽</span>']
+                        
+                        toggle1.addEventListener('click',()=>{
+                           document.querySelectorAll('.profile__subscribe__price').forEach((price,index)=>{
+                              price.innerHTML = prices1[index]
+                           })
+                           document.querySelectorAll('.profile__subscribe__saving').forEach((div)=>{
+                              div.style.visibility = 'hidden'
+                           })
+                        })
+                        toggle2.addEventListener('click',()=>{
+                           document.querySelectorAll('.profile__subscribe__price').forEach((price,index)=>{
+                              price.innerHTML = prices6[index]
+                           })
+                           document.querySelectorAll('.profile__subscribe__saving').forEach((div,index)=>{
+                              div.style.visibility = 'visible'
+                              div.innerHTML = savings6[index]
+                           })
+                        })
+                        toggle3.addEventListener('click',()=>{
+                           document.querySelectorAll('.profile__subscribe__price').forEach((price,index)=>{
+                              price.innerHTML = prices12[index]
+                           })
+                           document.querySelectorAll('.profile__subscribe__saving').forEach((div,index)=>{
+                              div.style.visibility = 'visible'
+                              div.innerHTML = savings12[index]
+                           })
+                        })
+                     </script>
                   </div>
                </div>
             </div>
          </div>
+         <div class="subscribe-modal">
+            <div class="subscribe-modal__body">
+               <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M0.246142 0.246142C-0.0820384 0.574323 -0.0820565 1.10641 0.246142 1.43461L3.81154 5L0.246142 8.56539C-0.0820384 8.89357 -0.0820565 9.42566 0.246142 9.75386C0.574341 10.0821 1.10643 10.082 1.43461 9.75386L5 6.18846L8.56539 9.75386C8.89359 10.0821 9.42568 10.082 9.75386 9.75386C10.082 9.42568 10.0821 8.89359 9.75386 8.56539L6.18846 5L9.75386 1.43461C10.082 1.10643 10.0821 0.574341 9.75386 0.246142C9.42566 -0.0820565 8.89357 -0.0820384 8.56539 0.246142L5 3.81154L1.43461 0.246142C1.10641 -0.0820565 0.574323 -0.0820384 0.246142 0.246142Z" fill="#9295AE"/>
+               </svg>
+               <p class="subscribe-modal__title">Получить бесплатный пробный период на 30 дней</p>
+               <form action="" class="subscribe-modal__form">
+                  <div class="subscribe-modal__account">
+                     <div class="header__profile mr_20">
+                        <div class="header__profile__back_white"></div>
+                        <div class="header__profile__back_gray"></div>
+                        <img src="img/profile.svg" alt="profile">
+                     </div>
+                     <div>
+                        <p>Вы вошли, как:</p>
+                        <p class="gray2 fs_14">+7 (963) 200-20-74</p>
+                     </div>
+                  </div>
+                  <div class="relative">
+                     <label for="INN">ИНН</label>
+                     <input type="text" name="INN" id="" value="202592905205901">
+                  </div>
+                  <div class="relative">
+                     <label for="INN">Телефон</label>
+                     <input type="tel" name="tel" id="" value="+7 (963) 200-20-74">
+                  </div>
+                  <div class="relative">
+                     <label for="INN">E-mail</label>
+                     <input type="email" name="mail" id="" value="ivanov@inbox.ru">
+                  </div>
+                  <a href="" class="btn btn_38 fs_14" id="activate_sub">Активировать подписку</a>
+                  <a href="" class="no-visited">Сменить пользователя</a>
+               </form>
+            </div>
+         </div>
+         <script src="/js/subscribe.js"></script>
       </div>
       <script src="js/toggle.js"></script>
       <script src="js/profile.js"></script>
    </main>
+   
 </body>
 </html>
