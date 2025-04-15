@@ -24,9 +24,20 @@
 // }
 
 body {
-   font-family: 'Segoe UI', 'Arial', sans-serif;
-   color: $text-color;
+   font-family:
+      -apple-system,
+      /* macOS и iOS */
+      BlinkMacSystemFont,
+      /* запасной системный шрифт на старых macOS */
+      "Segoe UI",
+      /* Windows */
+      Roboto,
+      /* Android */
+      "Helvetica Neue", Helvetica, Arial,
+      /* универсальные sans-serif */
+      sans-serif;
 }
+
 
 a {
    font-family: 'Segoe UI', 'Arial', sans-serif;
