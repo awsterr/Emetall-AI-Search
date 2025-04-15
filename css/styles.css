@@ -3770,6 +3770,9 @@ ul.menu a {
   .profile__subscribe__wrapper .profile__subscribe__cards .profile__subscribe__pro .secondary-btn:active {
     background-color: #104CC4;
   }
+  .profile__subscribe__wrapper .profile__subscribe__warning {
+    font-size: 14px;
+  }
   .profile__searches .profile__title {
     display: none;
   }
