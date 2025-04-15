@@ -3418,7 +3418,7 @@ ul.menu a {
 }
 .profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages li::before {
   background-image: url(../img/ai-file-success-blue.svg);
-  top: calc(1em + 3px);
+  top: calc(1em - 1px);
 }
 .profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages hr {
   border: none;
