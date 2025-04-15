@@ -101,19 +101,21 @@
       letter-spacing: -0.4px;
 
       &:hover {
-        background: $blue;
-        color: #fff;
+        background: #0000001A;
+        color: $text-color;
 
-        svg path {
-          fill: #fff;
-        }
+        // svg path {
+        //   fill: #fff;
+        // }
       }
 
       &_active {
         background: #0000001A;
         color: $text-color;
 
-
+        // svg path {
+        //   fill: #fff;
+        // }
       }
     }
   }
