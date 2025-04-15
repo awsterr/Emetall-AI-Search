@@ -1280,7 +1280,7 @@
     justify-content: center;
     align-items: center;
     padding: 1px 8px;
-    border-radius: 6px;
+    border-radius: 4px;
     background: $text-color;
     color: #fff;
     height: 24px;
@@ -1410,7 +1410,7 @@
           line-height: 1.6;
 
           li::before {
-            top: calc(1em + 3px);
+            top: calc(1em + 1px);
           }
 
           li.disabled {
@@ -1477,7 +1477,7 @@
 
             &::before {
               background-image: url(../img/ai-file-success-blue.svg);
-              top: calc(1em + 4px);
+              top: calc(1em + 3px);
             }
           }
 
@@ -1493,7 +1493,7 @@
 
             &::before {
               background-image: url(../img/cross.svg);
-              top: calc(50% + 3px);
+              top: calc(50% + 1px);
               background-size: 12px;
               left: 2px;
             }
@@ -1874,6 +1874,12 @@
           .profile__subscribe__actual {
             padding: 16px;
 
+            .profile-subscribe__body-wrapper {
+              .blue.lh_150 {
+                font-size: 16px;
+              }
+            }
+
             p.fw_600.mb_12 {
               margin-bottom: 20px;
             }
@@ -1899,8 +1905,29 @@
         }
 
         .profile__subscribe__cards {
+          grid-template-rows: auto;
+
           .profile__subscribe__pro {
             padding: 24px 16px;
+
+            .profile__subscribe__advantages {
+              padding-right: 18px;
+              padding-left: 4px;
+            }
+
+            .secondary-btn {
+              background: $blue;
+              color: #fff;
+
+              &:hover {
+                background-color: #3473F4;
+
+              }
+
+              &:active {
+                background-color: #104CC4;
+              }
+            }
           }
         }
       }

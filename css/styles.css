@@ -3266,7 +3266,7 @@ ul.menu a {
   justify-content: center;
   align-items: center;
   padding: 1px 8px;
-  border-radius: 6px;
+  border-radius: 4px;
   background: #212529;
   color: #fff;
   height: 24px;
@@ -3372,7 +3372,7 @@ ul.menu a {
   line-height: 1.6;
 }
 .profile__subscribe__info .profile__subscribe__about .profile__subscribe__advantages li::before {
-  top: calc(1em + 3px);
+  top: calc(1em + 1px);
 }
 .profile__subscribe__info .profile__subscribe__about .profile__subscribe__advantages li.disabled {
   color: #6C757D;
@@ -3420,7 +3420,7 @@ ul.menu a {
 }
 .profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages li::before {
   background-image: url(../img/ai-file-success-blue.svg);
-  top: calc(1em + 4px);
+  top: calc(1em + 3px);
 }
 .profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages hr {
   border: none;
@@ -3433,7 +3433,7 @@ ul.menu a {
 }
 .profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages .dim::before {
   background-image: url(../img/cross.svg);
-  top: calc(50% + 3px);
+  top: calc(50% + 1px);
   background-size: 12px;
   left: 2px;
 }
@@ -3732,6 +3732,9 @@ ul.menu a {
   .profile__subscribe__wrapper .profile__subscribe__info .profile__subscribe__actual {
     padding: 16px;
   }
+  .profile__subscribe__wrapper .profile__subscribe__info .profile__subscribe__actual .profile-subscribe__body-wrapper .blue.lh_150 {
+    font-size: 16px;
+  }
   .profile__subscribe__wrapper .profile__subscribe__info .profile__subscribe__actual p.fw_600.mb_12 {
     margin-bottom: 20px;
   }
@@ -3747,8 +3750,25 @@ ul.menu a {
   .profile__subscribe__wrapper .profile__subscribe__get-sub .toggle > div {
     padding: 4px;
   }
+  .profile__subscribe__wrapper .profile__subscribe__cards {
+    grid-template-rows: auto;
+  }
   .profile__subscribe__wrapper .profile__subscribe__cards .profile__subscribe__pro {
     padding: 24px 16px;
+  }
+  .profile__subscribe__wrapper .profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages {
+    padding-right: 18px;
+    padding-left: 4px;
+  }
+  .profile__subscribe__wrapper .profile__subscribe__cards .profile__subscribe__pro .secondary-btn {
+    background: #2764E0;
+    color: #fff;
+  }
+  .profile__subscribe__wrapper .profile__subscribe__cards .profile__subscribe__pro .secondary-btn:hover {
+    background-color: #3473F4;
+  }
+  .profile__subscribe__wrapper .profile__subscribe__cards .profile__subscribe__pro .secondary-btn:active {
+    background-color: #104CC4;
   }
   .profile__searches .profile__title {
     display: none;
