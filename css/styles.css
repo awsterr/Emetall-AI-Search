@@ -13,10 +13,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-a {
-  font-family: "Segoe UI", "Arial", sans-serif;
-}
-
 a[x-apple-data-detectors] {
   color: inherit !important;
   text-decoration: none !important;
@@ -2343,11 +2339,8 @@ ul.menu a {
   fill: #fff;
 }
 .profile__menu__link_active {
-  background: #2764E0;
-  color: #fff;
-}
-.profile__menu__link_active svg path {
-  fill: #fff;
+  background: rgba(0, 0, 0, 0.1019607843);
+  color: #212529;
 }
 .profile__content {
   background: #fff;
@@ -3241,6 +3234,11 @@ ul.menu a {
 .profile .no-visited:visited {
   color: #2764E0;
 }
+.profile .profile__back {
+  position: fixed;
+  z-index: 10;
+  margin-top: -1px;
+}
 .profile .profile__subscribe__advantages {
   list-style: none;
 }
@@ -3440,8 +3438,12 @@ ul.menu a {
 .profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages .new {
   background-color: rgba(39, 100, 224, 0.1019607843);
   border-radius: 15px;
-  margin-left: -8px;
-  padding-left: 31px;
+  margin-left: -9px;
+  padding-left: 29px;
+  display: block;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-right: 12px;
 }
 .profile__subscribe__cards .profile__subscribe__pro .profile__subscribe__advantages .new::before {
   left: 8px;
@@ -3450,11 +3452,13 @@ ul.menu a {
   margin-bottom: 17px;
   font-size: 11px;
   line-height: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 7px;
 }
 .profile__subscribe__cards .profile__subscribe__saving span {
   color: #2764E0;
   display: inline-block;
-  margin-left: 7px;
   background-color: rgba(39, 100, 224, 0.2);
   border-radius: 4px;
   padding: 4px;
@@ -3716,6 +3720,9 @@ ul.menu a {
   }
 }
 @media screen and (max-width: 768px) {
+  .profile .container {
+    margin-top: 60px;
+  }
   .profile__subscribe .profile__title {
     padding: 20px 16px;
     margin-bottom: 0;
